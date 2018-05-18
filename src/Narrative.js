@@ -11,13 +11,35 @@ import './Narrative.css';
 // for Paragraphs: not much, a font-family, if different from default, & a font size?
 // STRETCH: jQuery to fade in new P's
 
+class Paragraph extends Component {
+  render() {
+    return (
+      <DM.Consumer>
+        {context => {
+          return(
+            <div>
+              <p>{context.text}</p>
+            </div>
+          )
+        }}
+      </DM.Consumer>  
+    );
+  } 
+}
+
 class Narrative extends Component {
   render() {
-    const paragraphs = __STATEVAR_PARAGRAPH_ARRAY.map((e, i) => <Paragraph key={`np${i}`} text={e} />);
     return (
-      <div className="narrative-wrapper">
-        {paragraphs}
-      </div>
+      <DM.Consumer>
+        {context => {
+          const paragraphs = __STATEVAR_PARAGRAPH_ARRAY.map((e, i) => <Paragraph key={`np${i}`} text={e} />);
+          return (
+            <div className="narrative-wrapper">
+              {paragraphs}
+            </div>
+          )
+        }}
+      </DM.Consumer>
     );
   } 
 }

@@ -12,7 +12,7 @@ class Button extends Component {
           // work?
           return (
             <div>
-              <button id="placeholder" className="button" label={props.btnLabel}></button>
+              <button id="placeholder" className="button" label={context.btnLabel}></button>
             </div>
           )}}
       </DM.Consumer>
