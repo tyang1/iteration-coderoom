@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Paragraph.css';
 
 // PROPS NEEDED:
 // a string, the text for that narrative event
