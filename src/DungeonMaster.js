@@ -9,6 +9,7 @@ class DungeonMaster extends Component {
     super(props)
     this.state = {
       keysCollected: 0,
+
       text: {
           introText: "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...",
           deskText: "You head to the desk and search amongst the scattered sheets of paper: ",
@@ -18,14 +19,34 @@ class DungeonMaster extends Component {
           bossChallengeText: "You have collected all the keys to the keyboard. Time for the Boss battle!",
           bossDefeatText: "CONGRATULATIONS!!! You have succesfully defeated the Boss Challenge and ESCAPED!!!"
       },
+
+      activeNarrative: ['This is the first paragraph', 'This is the second paragraph.'],
+
       promptText: '',
-      buttons: {
-        button1: {active: false, text: 'Check desk'},
-        button2: {active: false, text: 'Open nightstand drawer!'},
-        button3: {active: false, text: 'Look under bed'},
-      },
+      button1: {active: false, text: 'Check desk'},
+      button2: {active: false, text: 'Open nightstand drawer!'},
+      button3: {active: false, text: 'Look under bed'},
+      button4: {visible: false, text: 'Challenge the boss'}
+      goToDesk: function() {
+        // here we add the relevant narrative text to the active narrative array
+        activeNarrative.push()
+        // set button1 active so it's greyed out
+        this.setState({button1: {active: true}});
+      }
     }
+    this.state.goToDesk = this.state.goToDesk.bind(this);
+    // bind in-state functions here
 }
+
+goToDesk = () => {
+  this.setState({ button1: {active: true}});
+
+}
+
+openNightStandDrawer
+
+lookUnderBed
+
 render() {
     return (
         <DM.Provider value={this.state}>
