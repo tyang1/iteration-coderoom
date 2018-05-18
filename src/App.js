@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Interactive from "./Interactive";
+import Narrative from './Narrative';
+import Interactive from './Interactive';
+import Inventory from './Inventory';
+import { DungeonMaster } from './DungeonMaster';
 
 class App extends Component {
   render() {
@@ -12,6 +14,11 @@ class App extends Component {
         <div className="inventory">Inventory</div>
         {/* <Interactive /> */}
       </div>
+      <DungeonMaster>
+        <Narrative />
+        <Interactive />
+        <Inventory />
+      </DungeonMaster>
     );
   }
 }
