@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import './Interactive.css';
+import { DM } from './DungeonMaster';
 
 import ChallengePrompt from './ChallengePrompt.js';
 import ButtonContainer from './ButtonContainer.js';
-import Button from './Button.js';
+// import Button from './Button.js';
 import Timer from './Timer.js';
 import CodingBox from './CodingBox.js';
 
@@ -15,12 +15,21 @@ import CodingBox from './CodingBox.js';
 class Interactive extends Component {
   render() {
     return (
-      <div>
-        <ChallengePrompt />
-        <ButtonContainer />
-        <Timer />
-        <CodingBox />
-      </div>
+      <DM.Consumer>
+        {context => {
+          // work happens here
+          if (context.codingChallenge) {
+            codingBox = <CodingBox />
+          }
+          return (
+            <div>
+              <ChallengePrompt />
+              <ButtonContainer />
+              <Timer />
+              {codingBox}
+            </div>
+          )}}
+      </DM.Consumer>
     );
   }
 }
