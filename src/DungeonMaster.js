@@ -9,6 +9,7 @@ class DungeonMaster extends Component {
     super(props)
     this.state = {
       
+      isHidden: true,
       keysCollected: 0,
       text: {
           introText: "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...",
@@ -24,34 +25,33 @@ class DungeonMaster extends Component {
 
 
       promptText: '',
-      deskBtn: {disabled: false, active: false, text: 'Check Desk'},
-      nightstandBtn: {disabled: false, active: false, text: 'Open Nightstand Drawer!'},
-      bedBtn: {disabled: false, active: false, text: 'Look Under Bed'},
-      bossBtn: {disabled: false, active: false, text: 'Challenge Boss'},
+      deskBtn: {disabled: false, text: 'Check Desk'},
+      nightstandBtn: {disabled: false, text: 'Open Nightstand Drawer'},
+      bedBtn: {disabled: false, text: 'Look Under Bed'},
+      bossBtn: {disabled: false, text: 'Challenge Boss'},
       goToDesk: () => {
-        console.log("are we in?");
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.deskText);
         // set deskBtn disabled so it's greyed out
-        this.setState({deskBtn: {disabled: true }});
+        this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
       },
       goToNightstand: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.nightstandText);
         // set nightstandBtn disabled so it's greyed out
-        this.setState({nightstandBtn: {disabled: true}});
+        this.setState({nightstandBtn: {disabled: true, text: 'Open Nightstand Drawer'}});
       },
       goToBed: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.bedText);
         // set bedBtn disabled so it's greyed out
-        this.setState({bedBtn: {disabled: true}});
+        this.setState({bedBtn: {disabled: true, text: 'Look Under Bed'}});
       },
       challengeBoss: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.bossChallengeText);
         // set bedBtn disabled so it's greyed out
-        this.setState({bossBtn: {disabled: true}});
+        this.setState({bossBtn: {disabled: true, text: 'Challenge Boss'}});
       },
       challengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
@@ -66,7 +66,7 @@ class DungeonMaster extends Component {
         // we also need to redirect the player to the winner screen
       },
       toggleHidden: function() {
-        this.setState({isHidden: !this.state.isHidden});
+        this.setState({isHidden: false});
       },
       challengeActive: true,
       challengePrompt: 'Your first challenge:',
