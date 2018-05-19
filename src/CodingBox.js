@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { DM } from './DungeonMaster';
 import CodeMirror from 'react-codemirror'
 import '../node_modules/codemirror/mode/javascript/javascript'
-import "./codemirror.css";
+// import "./codemirror.css";
 
 class CodeMirrorApp extends Component {
   constructor (props) {
@@ -26,7 +26,7 @@ class CodeMirrorApp extends Component {
           <div>
               <CodeMirror value={this.state.code} onChange={this.handleChange} options={options}/>
               <div id="challenge-options">
-                <button onClick={() => this.props.submitTest(this.state.code)}>Submit code!</button>
+                <button id="code-btn" onClick={() => this.props.submitTest(this.state.code)}>Submit Code!</button>
                 <div>{this.props.challengeResponseText}</div>
               </div>
           </div>
@@ -46,7 +46,7 @@ class CodingBox extends Component {
           // console.log(doc.getValue());
           return (
             <div className="coding-wrapper">
-              <center>{context.challengePrompt}</center>
+              <center><div id="challenge-text">{context.challengePrompt}</div></center>
               <CodeMirrorApp
                 submitTest={context.submitTest}
                 startingCode={context.startingCode}
