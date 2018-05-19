@@ -82,6 +82,7 @@ class DungeonMaster extends Component {
       goToDesk: () => {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.deskText);
+        this.setState({challengePrompt:'Write a function that accepts an array and a value as parameters. It will return the index of the value in the array'});
         // set deskBtn disabled so it's greyed out
         this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
       },
@@ -119,8 +120,11 @@ class DungeonMaster extends Component {
         this.setState({isHidden: false});
       },
       challengeActive: true,
-      challengePrompt: 'Your first challenge:',
-      startingCode: 'function test (params) {}',
+      challengePrompt: '',
+      startingCode: `function findInArray (arr, elem) {
+// your code here
+
+}`,
       challengeResponseText: 'You did it!!!',
       submitTest: function(code) {
         //console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
