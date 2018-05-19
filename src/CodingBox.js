@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { DM } from './DungeonMaster';
 import CodeMirror from 'react-codemirror'
 import '../node_modules/codemirror/mode/javascript/javascript'
-// import "./codemirror.css";
+import "./codemirror.css";
 
 class CodeMirrorApp extends Component {
   constructor (props) {
