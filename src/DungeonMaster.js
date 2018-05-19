@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const DM = React.createContext();
-
+var myWorker = new Worker("./worker.js");
 
 
 class DungeonMaster extends Component {
@@ -9,7 +9,6 @@ class DungeonMaster extends Component {
     super(props)
     this.state = {
       keysCollected: 0,
-
       text: {
           introText: "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...",
           deskText: "You head to the desk and search amongst the scattered sheets of paper: ",
@@ -22,7 +21,6 @@ class DungeonMaster extends Component {
 
       activeNarrative: ['This is the first paragraph', 'This is the second paragraph.'],
 
-      promptText: '',
       button1: {active: false, text: 'Check Desk'},
       button2: {active: false, text: 'Open Nightstand Drawer!'},
       button3: {active: false, text: 'Look Under Bed'},
@@ -56,6 +54,14 @@ class DungeonMaster extends Component {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push();
         // we also need to redirect the player to the winner screen
+      },
+      challengeActive: true,
+      promptText: 'Your first challenge:',
+      submitTest: function(code) {
+        console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.`);
+        // myWorker.postMessage(); // Sending message as an array to the worker
+        // console.log('Message posted to worker');
+        // console.log(eval(editor.getValue()));
       }
     }
     this.state.goToDesk = this.state.goToDesk.bind(this);
@@ -63,7 +69,11 @@ class DungeonMaster extends Component {
     this.state.goToNightstand = this.state.goToNightstand.bind(this);
     this.state.challengeCompleted = this.state.challengeCompleted.bind(this);
     this.state.bossChallengeCompleted = this.state.bossChallengeCompleted.bind(this);
-
+    this.state.submitTest = this.state.submitTest.bind(this);
+    myWorker.onmessage = function (e) {
+      console.log( e.data );
+      console.log('Message received from worker');
+    };
     // bind in-state functions here
 }
 
