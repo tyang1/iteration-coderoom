@@ -47,14 +47,14 @@ class DungeonMaster extends Component {
       },
       challengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
-        activeNarrative.push();
+        this.state.activeNarrative.push();
         // we also need to add 28 keys to the player's total keys
-        keysCollected += 28;
+        this.setState({keysCollected: this.state.keysCollected + 28});
         // finally upon completion, change the interactive container back to the page with the 3 buttons ---the clicked button should be unclickable from other function.
       },
       bossChallengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
-        activeNarrative.push();
+        this.state.activeNarrative.push();
         // we also need to redirect the player to the winner screen
       }
     }
