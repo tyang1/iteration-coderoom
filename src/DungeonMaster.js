@@ -71,6 +71,7 @@ class DungeonMaster extends Component {
       challengeActive: true,
       challengePrompt: 'Your first challenge:',
       startingCode: 'function test (params) {}',
+      challengeResponseText: 'You did it!!!',
       submitTest: function(code) {
         console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
         // myWorker.postMessage({ code, challenge: 1 })
