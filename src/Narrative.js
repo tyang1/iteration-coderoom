@@ -20,7 +20,7 @@ class Paragraph extends Component {
         {context => {
           return(
             <div>
-              <p>{context.text}</p>
+              <p>{this.props.text}</p>
             </div>
           )
         }}
