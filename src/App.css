@@ -66,10 +66,10 @@
 #challenge-options {
   display: flex;
   justify-content: flex-start; }
-  #challenge-options div {
+
+#challenge-options div {
     margin-left: 20px; }
-  #challenge-options .button {
-    background-color: greenyellow; }
+ 
 
 .button {
   background-color: white;
@@ -83,4 +83,3 @@
 .timer {
   margin: auto;
   padding: 5px; }
-

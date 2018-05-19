@@ -12,6 +12,7 @@ app.get('/', (req, res) => {res.sendFile(__dirname + '/build/index.html')});
 
 app.get('/game', (req, res) => {res.sendFile(__dirname + '/build/game.html')});
 
+
 app.get('/win', (req, res) => {res.sendFile(__dirname + '/build/win.html')});
 
 app.get('/lose', (req, res) => {res.sendFile(__dirname + '/build/lose.html')});
