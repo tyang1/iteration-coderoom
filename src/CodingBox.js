@@ -25,7 +25,10 @@ class CodeMirrorApp extends Component {
       return(
           <div>
               <CodeMirror value={this.state.code} onChange={this.handleChange} options={options}/>
-              <button onClick={() => this.props.submitTest(this.state.code)}>Submit code!</button>
+              <div id="challenge-options">
+                <button onClick={() => this.props.submitTest(this.state.code)}>Submit code!</button>
+                <div>{this.props.challengeResponseText}</div>
+              </div>
           </div>
       );
   }
@@ -44,7 +47,10 @@ class CodingBox extends Component {
           return (
             <div className="coding-wrapper">
               <center>{context.challengePrompt}</center>
-              <CodeMirrorApp submitTest={context.submitTest} startingCode={context.startingCode}/>
+              <CodeMirrorApp
+                submitTest={context.submitTest}
+                startingCode={context.startingCode}
+                challengeResponseText={context.challengeResponseText}/>
             </div>
             )
         }}

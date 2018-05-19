@@ -2,13 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Code Room Win</title>
+    <title>Code Room Splash</title>
+    <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
+    <style>
+      /* GLOBAL STYLES */
+      body {
+        background: #fcf8cd;
+        padding-top: 5em;
+        display: flex;
+        justify-content: center;
+        font-family: Kavivanar, sans-serif !important;
+      }
+
+      /* DEMO-SPECIFIC STYLES */
+
+      .typewriter h1 {
+        color: #333;
+        font-size: 50px;
+        overflow: hidden; /* Ensures the content is not revealed until the animation */
+        border-right: .15em solid #333; /* The typwriter cursor */
+        white-space: nowrap; /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        letter-spacing: .15em; /* Adjust as needed */
+        animation: 
+          typing 3.5s steps(30, end),
+          blink-caret .5s step-end infinite;
+      }
+
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* The typing effect */
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
+
+      /* The typewriter cursor effect */
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: lightskyblue }
+      }
+
+      .buttons {
+        margin-top: 100px;
+        height: 50px;
+        width: 150px;
+        font-size: 24px;
+        font-family: monospace;
+        background-color: inherit;
+        color: lightskyblue;
+        border: 3px dotted lightskyblue;
+        animation: 7s ease 0s normal forwards 1 fadein;
+      }
+
+      .buttons:hover {
+        color: lightcyan;
+        border-color: lightcyan;
+      }
+
+      @keyframes fadein{
+        0% { opacity:0; }
+        66% { opacity:0; }
+        100% { opacity:1; }
+      }
+    </style>
 </head>
 <body>
-    Code Room Win
-
-    
+  <div id="wrapper">
+    <div class="typewriter">
+      <h1>You escape to the HEART of Venice beach...</h1>
+    </div>
+  </div>
 </body>
+
 </html>
