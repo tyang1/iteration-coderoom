@@ -10,7 +10,8 @@ onmessage = function (e) {
   console.log('Message received from main script');
   console.log(e.data);
   // console.log(typeof e.data);
-  eval(e.data);
+  //eval(e.data);
+
   
   // wobbegong();
 
@@ -59,9 +60,6 @@ switch (e.data.challenge) {
 
   let msg =  passed ? 'yes' : 'no';
   postMessage(msg);
-
-
-  
 
 
 //   const func = Function(e.data);
