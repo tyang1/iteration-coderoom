@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Narrative.css';
+import { DM } from './DungeonMaster';
 
 // STATE NEEDED:
 // an array of strings containing all active paragraphs (storing max 10 paragraphs at a time)
