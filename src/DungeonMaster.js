@@ -144,7 +144,7 @@ class DungeonMaster extends Component {
 // your code here
 
 }`,
-      challengeResponseText: 'You did it!!!',
+      challengeResponseText: '',
 
       submitTest: function(code) {
         // console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
