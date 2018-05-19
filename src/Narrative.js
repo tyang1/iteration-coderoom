@@ -17,7 +17,7 @@ class Paragraph extends Component {
   render() {
     return (
       <div>
-        <p>{this.props.text}</p>
+        <p className="narrative-paragraph">{this.props.text}</p>
       </div>
     )
   } 

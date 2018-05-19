@@ -1,6 +1,7 @@
 * {
   border-style: solid;
-  border: 1px solid black; }
+  border: 1px solid black;
+  font-family: 'Aldrich', sans-serif; }
 
 .wrapper {
   background-color: white;
@@ -29,19 +30,30 @@
   height: 150px;
   text-align: left;
   font-family: 'Aldrich', sans-serif;
-  font-size: 20px; }
+  font-size: 15px; }
+
+.name-inventory {
+  margin-left: 10px; }
+
+.narrative-paragraph {
+  width: 80%;
+  height: 300px;
+  margin: 10%;
+  overflow: auto; }
 
 .flex-container {
+  position: relative;
   display: flex;
   flex-direction: row;
   background-color: black;
-  width: 100%; }
+  width: 100%;
+  margin-left: 18%; }
 
 .flex-container div {
   background-color: lightgray;
-  margin: 8px;
-  padding: 20px;
-  line-height: 10px;
+  margin: 10px;
+  padding: 18px;
+  line-height: 8px;
   text-align: center;
   color: black;
   font-size: 15px; }
