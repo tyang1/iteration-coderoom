@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 // import "./ButtonContainer.css";
-import Button from "./Button.js";
 import { DM } from './DungeonMaster';
 
 class Button extends Component {
@@ -12,7 +11,7 @@ class Button extends Component {
           // work?
           return (
             <div>
-              <button id="placeholder" className="button" label={props.btnLabel}></button>
+              <button id="placeholder" className="button" label={context.button1.text}></button>
             </div>
           )}}
       </DM.Consumer>
