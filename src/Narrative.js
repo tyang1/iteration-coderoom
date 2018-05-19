@@ -30,7 +30,7 @@ class Narrative extends Component {
         {context => {
           const paragraphs = context.activeNarrative.map((e, i) => <Paragraph key={`np${i}`} text={e} />);
           return (
-            <div className="narrative-wrapper">
+            <div className="narrative">
               {paragraphs}
             </div>
           );

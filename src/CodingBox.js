@@ -25,7 +25,7 @@ class CodingBox extends Component {
           // console.log(doc.getValue());
           return (
             <div className="coding-wrapper">
-              <form style="position: relative; margin-top: .5em;">
+              <form className="form">
                 <textarea id="demotext"></textarea>
                 <button type="button" onClick={() => context.submitTest(editor.getValue())}>RUN</button>
               </form>
