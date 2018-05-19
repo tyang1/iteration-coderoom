@@ -82,8 +82,12 @@ class DungeonMaster extends Component {
       goToDesk: () => {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.deskText);
+
+        this.setState({challengePrompt:'Write a function that accepts an array and a value as parameters. It will return the index of the value in the array'});
+
         // reset challengeResponseText to an empty string at beginning of challenge
         this.setState({challengeResponseText: ''});
+
         // set deskBtn disabled so it's greyed out
         this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
       },
@@ -120,11 +124,15 @@ class DungeonMaster extends Component {
         this.setState({isHidden: false});
       },
       challengeActive: true,
-      challengePrompt: 'Your first challenge:',
-      startingCode: 'function test (params) {}',
-      challengeResponseText: '',
+      challengePrompt: '',
+      startingCode: `function findInArray (arr, elem) {
+// your code here
+
+}`,
+      challengeResponseText: 'You did it!!!',
+
       submitTest: function(code) {
-        //console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
+        // console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
         // console.log(myWorker);
         myWorker.postMessage({ code:code, challenge: 1 })
       }
@@ -145,6 +153,9 @@ class DungeonMaster extends Component {
         this.setState({challengeResponseText: 'You did it!!!'});
       }
       console.log('Message received from worker');
+      // DEMO: just change the url on success or failure of one challenge
+      if (e.data === 'yes') window.URL('/win.html');
+      else window.URL('/lose.html');
     };
 
     // bind in-state functions here

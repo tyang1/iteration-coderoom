@@ -24,7 +24,6 @@
   padding: 13px;
   background-color: white;
   color: black;
-
 }
 
 .interactive {
@@ -83,6 +82,8 @@
   div {
     margin-left: 20px;
   }
+}
+
 
 .button {
   background-color: white;
@@ -101,8 +102,16 @@
   
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.button:disabled {
+    background: #dddddd;
 }
+
+#code-btn {
+  font-size: 12px;
+}
+
+
+#challenge-text {
+  width: 400px;
+  margin-bottom: 20px;
 }
