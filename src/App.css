@@ -10,15 +10,15 @@
   float: left;
   width: 35%;
   height: 600px;
-  text-align: left; }
+  text-align: left;
+  overflow: auto; }
 
 .narrative-paragraph {
   width: 60%;
-  height: 40px;
+  height: auto;
   margin-top: 75px;
   margin-left: 15%;
-  padding: 13px;
-  overflow: auto; }
+  padding: 13px; }
 
 .interactive {
   margin-left: 35%;
@@ -66,6 +66,5 @@
   justify-content: flex-start; }
   #challenge-options div {
     margin-left: 20px; }
-
-.button {
-  background-color: greenyellow; }
+  #challenge-options .button {
+    background-color: greenyellow; }

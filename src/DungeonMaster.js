@@ -123,7 +123,7 @@ class DungeonMaster extends Component {
       startingCode: 'function test (params) {}',
       challengeResponseText: 'You did it!!!',
       submitTest: function(code) {
-        //console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
+        // console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
         // console.log(myWorker);
         myWorker.postMessage({ code:code, challenge: 1 })
       }
@@ -139,6 +139,9 @@ class DungeonMaster extends Component {
     myWorker.onmessage = function (e) {
       console.log( e.data );
       console.log('Message received from worker');
+      // DEMO: just change the url on success or failure of one challenge
+      if (e.data === 'yes') window.URL('/win.html');
+      else window.URL('/lose.html');
     };
     // bind in-state functions here
 }
