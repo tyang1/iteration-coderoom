@@ -57,7 +57,8 @@ switch (e.data.challenge) {
     break;
 }
 
-  postMessage(passed);
+  let msg =  passed ? 'yes' : 'no';
+  postMessage(msg);
 
 
   
@@ -79,6 +80,6 @@ switch (e.data.challenge) {
 
 
 
-  postMessage("HELLO WORLD!");
+  // postMessage("HELLO WORLD!");
 
 }
