@@ -17,6 +17,7 @@ class Interactive extends Component {
     return (
       <DM.Consumer>
         {context => {
+          let codingBox;
           // work happens here
           // if (context.codingChallenge) {
           //   codingBox = <CodingBox />

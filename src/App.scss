@@ -1,23 +1,28 @@
 * {
   border-style: solid;
-  border: 1px solid black; }
+  border: 1px solid black;
+}
 
 .wrapper {
   background-color: white;
-  width: 100%; }
+  width: 100%;
+}
 
 .narrative {
   float: left;
   width: 35%;
   height: 600px;
   text-align: left;
-  border: 1px solid black; }
+  border: 1px solid black;
+}
 
 .interactive {
   margin-left: 35%;
   width: 65%;
   height: 600px;
-  text-align: center; }
+  text-align: center;
+
+}
 
 .inventory {
   color: lightgray;
@@ -26,25 +31,30 @@
   height: 150px;
   text-align: left;
   font-family: 'Aldrich', sans-serif;
-  font-size: 20px; }
+  font-size: 20px;
+}
 
 .flex-container {
   display: flex;
   flex-direction: row;
   background-color: black;
-  width: 100%; }
+  width: 100%;
+}
 
-.flex-container div {
-  background-color: lightgray;
-  margin: 8px;
-  padding: 20px;
-  line-height: 10px;
-  text-align: center;
-  color: black;
-  font-size: 15px; }
+.flex-container {
+  div {
+    background-color: lightgray;
+    margin: 8px;
+    padding: 20px;
+    line-height: 10px;
+    text-align: center;
+    color: black;
+    font-size: 15px;
+  }
+}
+
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
