@@ -160,19 +160,19 @@ class DungeonMaster extends Component {
     this.state.submitTest = this.state.submitTest.bind(this);
     this.state.toggleHidden = this.state.toggleHidden.bind(this);
     myWorker.onmessage = (e) => {
-      console.log( e.data, "NO!!" );
+      //console.log( e.data, "NO!!" );
       if (e.data === 'yes') {
-        console.log("made it in!");
+       // console.log("made it in!");
         this.state.activeNarrative.push(this.state.text.completionText);
         this.setState({keysCollected: this.state.keysCollected + 28});
         this.setState({challengeResponseText: 'You did it!!!'});
       } else if (e.data === 'no') {
         this.setState({challengeResponseText: 'That\'s an interesting interpretation -- do you mind walking me through your logic?'});
       }
-      console.log('Message received from worker');
+      //console.log('Message received from worker');
       // DEMO: just change the url on success or failure of one challenge
-      if (e.data === 'yes') window.URL('/win.html');
-      else window.URL('/lose.html');
+     // if (e.data === 'yes') window.URL('/win.html');
+     // else window.URL('/lose.html');
     };
 
     // bind in-state functions here
