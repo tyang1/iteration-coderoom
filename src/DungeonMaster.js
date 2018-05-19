@@ -23,10 +23,10 @@ class DungeonMaster extends Component {
       activeNarrative: ['This is the first paragraph', 'This is the second paragraph.'],
 
       promptText: '',
-      button1: {active: false, text: 'Check desk'},
-      button2: {active: false, text: 'Open nightstand drawer!'},
-      button3: {active: false, text: 'Look under bed'},
-      button4: {visible: false, text: 'Challenge the boss'},
+      button1: {active: false, text: 'Check Desk'},
+      button2: {active: false, text: 'Open Nightstand Drawer!'},
+      button3: {active: false, text: 'Look Under Bed'},
+      button4: {visible: false, text: 'Challenge Boss'},
       goToDesk: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push()

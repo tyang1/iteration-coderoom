@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { DM } from './DungeonMaster';
 // import "./CodingBox.css";
+import { DM } from "./DungeonMaster";
 
 class CodingBox extends Component {
   render() {
