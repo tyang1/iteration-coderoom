@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { DM } from './DungeonMaster';
 // import "./CodingBox.css";
 
 class CodingBox extends Component {
@@ -7,21 +8,14 @@ class CodingBox extends Component {
     return (
       <DM.Consumer>
         {context => {
-          
           return (
             <div>
-              {/*This is where the Code Mirror Box goes*/}
+              {/* Coding Box */}
             </div>
-          )}
-        }
+          )}}
       </DM.Consumer>
-    );
+    ) 
   }
 }
-const CodingBox = (props) => (
-  <div>
-    Coding Box
-  </div>
-);
 
 export default CodingBox;

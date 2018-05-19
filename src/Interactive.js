@@ -18,15 +18,15 @@ class Interactive extends Component {
       <DM.Consumer>
         {context => {
           // work happens here
-          if (context.codingChallenge) {
-            codingBox = <CodingBox />
-          }
+          // if (context.codingChallenge) {
+          //   codingBox = <CodingBox />
+          // }
           return (
             <div>
               <ChallengePrompt />
               <ButtonContainer />
               <Timer />
-              {codingBox}
+              {/* {codingBox} */}
             </div>
           )}}
       </DM.Consumer>

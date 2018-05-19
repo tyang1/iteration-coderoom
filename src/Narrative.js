@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Narrative.css';
+import { DM } from './DungeonMaster';
 
 // STATE NEEDED:
 // an array of strings containing all active paragraphs (storing max 10 paragraphs at a time)
@@ -32,16 +32,15 @@ class Narrative extends Component {
     return (
       <DM.Consumer>
         {context => {
-          const paragraphs = __STATEVAR_PARAGRAPH_ARRAY.map((e, i) => <Paragraph key={`np${i}`} text={e} />);
+          const paragraphs = context.activeNarrative.map((e, i) => <Paragraph key={`np${i}`} text={e} />);
           return (
             <div className="narrative-wrapper">
               {paragraphs}
             </div>
-          )
+          );
         }}
       </DM.Consumer>
-    );
-  } 
+    )}
 }
 
 export default Narrative;
