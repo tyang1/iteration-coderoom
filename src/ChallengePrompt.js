@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { DM } from './DungeonMaster';
 // import "./ChallengePrompt.css";
 import { DM } from "./DungeonMaster";
 
