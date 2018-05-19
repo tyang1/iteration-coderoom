@@ -12,14 +12,14 @@ import './Narrative.css';
 // STRETCH: jQuery to fade in new P's
 
 class Narrative extends Component {
-  render() {
-    const paragraphs = __STATEVAR_PARAGRAPH_ARRAY.map((e, i) => <Paragraph key={`np${i}`} text={e} />);
-    return (
-      <div className="narrative-wrapper">
-        {paragraphs}
-      </div>
-    );
-  } 
+  // render() {
+  //   const paragraphs = __STATEVAR_PARAGRAPH_ARRAY.map((e, i) => <Paragraph key={`np${i}`} text={e} />);
+  //   return (
+  //     <div className="narrative-wrapper">
+  //       {paragraphs}
+  //     </div>
+  //   );
+  // } 
 }
 
 export default Narrative;
