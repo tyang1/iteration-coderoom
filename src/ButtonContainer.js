@@ -11,7 +11,7 @@ class Button extends Component {
           // work?
           return (
             <div>
-              <button id="placeholder" className="button" >{this.props.btnLabel}</button>
+              <button id="placeholder" className="button" onClick={this.props.onClick}>{this.props.btnLabel}</button>
 
 
             </div>
@@ -30,10 +30,10 @@ class ButtonContainer extends Component {
           return (
             <div>
               {/* ButtonContainer placeholder */}
-              <Button btnLabel={context.deskBtn.text}/>
-              <Button btnLabel={context.nightstandBtn.text}/>
-              <Button btnLabel={context.bedBtn.text}/>
-              <Button btnLabel={context.bossBtn.text}/>
+              <Button btnLabel={context.deskBtn.text} onClick={context.goToDesk}/>
+              <Button btnLabel={context.nightstandBtn.text} onClick={context.goToNightstand}/>
+              <Button btnLabel={context.bedBtn.text} onClick={context.goToBed}/>
+              <Button btnLabel={context.bossBtn.text} />
             </div>
           )}}
       </DM.Consumer>

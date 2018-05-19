@@ -28,20 +28,21 @@ class DungeonMaster extends Component {
       bedBtn: {active: false, text: 'Look Under Bed'},
       bossBtn: {visible: false, text: 'Challenge Boss'},
       goToDesk: () => {
+        console.log("are we in?");
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.push()
+        this.state.activeNarrative.push(this.state.text.deskText);
         // set deskBtn active so it's greyed out
         this.setState({button1: {active: true}});
       },
       goToNightstand: function() {
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.push()
+        this.state.activeNarrative.push(this.state.text.nightstandText);
         // set nightstandBtn active so it's greyed out
         this.setState({button2: {active: true}});
       },
       goToBed: function() {
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.push()
+        this.state.activeNarrative.push(this.state.text.bedText);
         // set bedBtn active so it's greyed out
         this.setState({button3: {active: true}});
       },
