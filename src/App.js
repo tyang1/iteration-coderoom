@@ -8,10 +8,13 @@ import { DungeonMaster } from './DungeonMaster';
 class App extends Component {
   render() {
     return (
-      <DungeonMaster className="wrapper">
-        <Narrative className="narrative"/>
-        <Interactive className="interactive"/>
-        <Inventory className="inventory"/>
+
+      <DungeonMaster >
+        <div className="wrapper">
+          <Narrative />
+          <Interactive />
+          <Inventory />
+        </div>
       </DungeonMaster>
     );
   }

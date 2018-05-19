@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel=stylesheet href="lib/codemirror.css">
+  <script src="lib/codemirror.js"></script>
+  <script src="mode/javascript/javascript.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  
+  
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("demotext"), {
+        lineNumbers: true,
+        mode: "javascript",
+        matchBrackets: true
+      });
+
+      // console.log(editor);
+      // console.log(editor.getValue());
+
+      // var doc = editor.getDoc();
+      // console.log(doc);
+      // console.log(doc.getValue());
+
+      // console.log(eval(editor.getValue()));
+
+      function runCode() {
+        console.log("in runCode()");
+
+        console.log('getting type of before sending');
+        console.log(typeof editor.getValue())
+        myWorker.postMessage(editor.getValue()); // Sending message as an array to the worker
+        console.log('Message posted to worker');
+        // console.log(eval(editor.getValue()));
+      }
+
+    // Requires script name as input
+    var myWorker = new Worker("worker.js");
+
+
+    myWorker.onmessage = function (e) {
+      console.log( e.data );
+      console.log('Message received from worker');
+    };
+
+
+
+
+    </script>
+</body>
+</html>
