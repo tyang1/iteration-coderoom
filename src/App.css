@@ -20,6 +20,9 @@
   height: 600px;
   text-align: center; }
 
+.coding-wrapper {
+  text-align: left; }
+
 .inventory {
   color: lightgray;
   background-color: black;
@@ -29,10 +32,10 @@
   font-family: 'Aldrich', sans-serif;
   font-size: 15px; }
 
-.name {
+.name-inventory {
   margin-left: 10px; }
 
-#narrative {
+.narrative-paragraph {
   width: 80%;
   height: 300px;
   margin: 10%;
