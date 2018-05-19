@@ -15,7 +15,7 @@ import { DM } from './DungeonMaster';
 
 class Paragraph extends Component {
   render() {
-    return(
+    return (
       <div>
         <p>{this.props.text}</p>
       </div>
