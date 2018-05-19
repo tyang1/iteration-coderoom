@@ -1,7 +1,6 @@
 * {
-  border-style: solid;
-  border: 1px solid black;
-  font-family: 'Aldrich', sans-serif; }
+  font-family: 'Aldrich', sans-serif;
+  background-color: white; }
 
 .wrapper {
   background-color: white;
@@ -11,8 +10,15 @@
   float: left;
   width: 35%;
   height: 600px;
-  text-align: left;
-  border: 1px solid black; }
+  text-align: left; }
+
+.narrative-paragraph {
+  width: 60%;
+  height: 40px;
+  margin-top: 75px;
+  margin-left: 15%;
+  padding: 13px;
+  overflow: auto; }
 
 .interactive {
   margin-left: 35%;
@@ -21,7 +27,8 @@
   text-align: center; }
 
 .coding-wrapper {
-  text-align: left; }
+  text-align: left;
+  border: 1px solid black; }
 
 .inventory {
   color: lightgray;
@@ -30,24 +37,20 @@
   height: 150px;
   text-align: left;
   font-family: 'Aldrich', sans-serif;
-  font-size: 15px; }
+  font-size: 18px; }
 
 .name-inventory {
-  margin-left: 10px; }
-
-.narrative-paragraph {
-  width: 80%;
-  height: 300px;
-  margin: 10%;
-  overflow: auto; }
+  margin-left: 2%;
+  width: 35%;
+  padding: 5px;
+  background-color: black; }
 
 .flex-container {
-  position: relative;
   display: flex;
   flex-direction: row;
-  background-color: black;
-  width: 100%;
-  margin-left: 18%; }
+  width: 80%;
+  margin-left: 18%;
+  background-color: black; }
 
 .flex-container div {
   background-color: lightgray;
@@ -64,8 +67,5 @@
   #challenge-options div {
     margin-left: 20px; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
+.button {
+  background-color: greenyellow; }
