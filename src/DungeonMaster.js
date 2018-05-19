@@ -20,29 +20,29 @@ class DungeonMaster extends Component {
           bossDefeatText: "CONGRATULATIONS!!! You have succesfully defeated the Boss Challenge and ESCAPED!!!"
       },
 
-      activeNarrative: ['This is the first paragraph', 'This is the second paragraph.'],
+      activeNarrative: ['You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...'],
 
       promptText: '',
-      button1: {active: false, text: 'Check Desk'},
-      button2: {active: false, text: 'Open Nightstand Drawer!'},
-      button3: {active: false, text: 'Look Under Bed'},
-      button4: {visible: false, text: 'Challenge Boss'},
+      deskBtn: {active: false, text: 'Check Desk'},
+      nightstandBtn: {active: false, text: 'Open Nightstand Drawer!'},
+      bedBtn: {active: false, text: 'Look Under Bed'},
+      bossBtn: {visible: false, text: 'Challenge Boss'},
       goToDesk: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push()
-        // set button1 active so it's greyed out
+        // set deskBtn active so it's greyed out
         this.setState({button1: {active: true}});
       },
       goToNightstand: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push()
-        // set button1 active so it's greyed out
+        // set nightstandBtn active so it's greyed out
         this.setState({button2: {active: true}});
       },
       goToBed: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push()
-        // set button1 active so it's greyed out
+        // set bedBtn active so it's greyed out
         this.setState({button3: {active: true}});
       },
       challengeCompleted: function() {

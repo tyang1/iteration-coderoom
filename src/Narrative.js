@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import './Narrative.css';
-
 import { DM } from './DungeonMaster';
 
 // STATE NEEDED:
@@ -17,16 +15,10 @@ import { DM } from './DungeonMaster';
 class Paragraph extends Component {
   render() {
     return (
-      <DM.Consumer>
-        {context => {
-          return(
-            <div>
-              <p>{context.text}</p>
-            </div>
-          )
-        }}
-      </DM.Consumer>  
-    );
+      <div>
+        <p>{this.props.text}</p>
+      </div>
+    )
   } 
 }
 
