@@ -12,6 +12,7 @@ class Button extends Component {
           return (
             <div>
               <button id="placeholder" className="button" label={context.button1.text}></button>
+
             </div>
           )}}
       </DM.Consumer>

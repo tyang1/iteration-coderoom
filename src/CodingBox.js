@@ -3,8 +3,7 @@ import { render } from "react-dom";
 import { DM } from './DungeonMaster';
 // import "./CodingBox.css";
 
-
- class CodingBox extends Component {
+class CodingBox extends Component {
   render() {
     return (
       <DM.Consumer>

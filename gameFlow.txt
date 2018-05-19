@@ -1,0 +1,60 @@
+Home Page - Shows: Asks to Play
+    No
+        Send to "Lose" Page
+    Yes
+        Intro Narrative
+        Keys Collected set to 0/101
+        3 Buttons on Screen
+            Click Desk Button  
+                Desk Narrative Appears
+                Interactive Container Changes
+                    3 buttons disappear
+                    Challenge Prompt Appears
+                    Code Mirror Box Appears
+                    Submit Buttons
+                Upon completion
+                    Complete Narrative Appears
+                    Goes back to 3 button Screen
+                        Desk button is now either:
+                            Not Clickable
+                            Gives alert already completed
+                        Keys Collected adds 33 to total
+            Click Nightstand Button  
+                Nightstand Narrative Appears
+                Interactive Container Changes
+                    3 buttons disappear
+                    Challenge Prompt Appears
+                    Code Mirror Box Appears
+                    Submit Buttons
+                Upon completion
+                    Complete Narrative Appears
+                    Goes back to 3 button Screen
+                        Nightstand button is now either:
+                            Not Clickable
+                            Gives alert already completed
+                        Keys Collected adds 33 to total
+            Click Bed Button  
+                Bed Narrative Appears
+                Interactive Container Changes
+                    3 buttons disappear
+                    Challenge Prompt Appears
+                    Code Mirror Box Appears
+                    Submit Buttons
+                Upon completion
+                    Complete Narrative Appears
+                    Goes back to 3 button Screen
+                        Bed button is now either:
+                            Not Clickable
+                            Gives alert already completed
+                        Keys Collected adds 35 to total
+        If all 3 buttons have been completed
+            Collected All Keys Narrative Appears
+            Interactive Container Changes
+                Additional Button is added to challenge boss
+                    Click on Boss Button
+                        Interactive Container Changes
+                            All Keys disappear
+                            Boss Challenge Prompt Appears
+                        Upon completion 
+                            Congratulations Narrative Appears
+                            WIN Screen Appears

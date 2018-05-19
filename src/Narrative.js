@@ -14,9 +14,15 @@ import { DM } from './DungeonMaster';
 class Paragraph extends Component {
   render() {
     return (
-      <div className="narrative-paragraph">
-        <p>{this.props.text}</p>
-      </div>
+      <DM.Consumer>
+        {context => {
+          return(
+            <div>
+              <p>{context.text}</p>
+            </div>
+          )
+        }}
+      </DM.Consumer>  
     );
   } 
 }
