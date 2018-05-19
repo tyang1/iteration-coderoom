@@ -3,8 +3,6 @@ onmessage = function (e) {
   console.log(e.data);
   console.log(typeof e.data);
   eval(e.data);
-  
-  wobbegong();
 
 //   const func = Function(e.data);
 //   func();

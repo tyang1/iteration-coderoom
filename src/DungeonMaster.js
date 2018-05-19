@@ -56,12 +56,11 @@ class DungeonMaster extends Component {
         // we also need to redirect the player to the winner screen
       },
       challengeActive: true,
-      promptText: 'Your first challenge:',
+      challengePrompt: 'Your first challenge:',
+      startingCode: 'function test (params) {}',
       submitTest: function(code) {
-        console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.`);
-        // myWorker.postMessage(); // Sending message as an array to the worker
-        // console.log('Message posted to worker');
-        // console.log(eval(editor.getValue()));
+        console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
+        // myWorker.postMessage({ code, challenge: 1 })
       }
     }
     this.state.goToDesk = this.state.goToDesk.bind(this);

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { DM } from './DungeonMaster';
-
-import ChallengePrompt from './ChallengePrompt.js';
 import ButtonContainer from './ButtonContainer.js';
 // import Button from './Button.js';
 import Timer from './Timer.js';
@@ -17,12 +15,10 @@ class Interactive extends Component {
     return (
       <DM.Consumer>
         {context => {
-          const codingBox = context.challengeActive ?  <CodingBox /> : <div></div>;
           return (
             <div className="interactive">
-              <ChallengePrompt />
               <ButtonContainer />
-              {codingBox}
+              <CodingBox />
               <Timer />
             </div>
           )}}
