@@ -14,6 +14,10 @@ import { DM } from './DungeonMaster';
 
 
 class Paragraph extends Component {
+  componentDidMount () {
+    var element = document.getElementById("narrative-wrapper-box");
+    element.scrollTop = element.scrollHeight;
+  }
   render() {
     return (
       <div>
@@ -24,13 +28,14 @@ class Paragraph extends Component {
 }
 
 class Narrative extends Component {
+
   render() {
     return (
       <DM.Consumer>
         {context => {
           const paragraphs = context.activeNarrative.map((e, i) => <Paragraph key={`np${i}`} text={e} />);
           return (
-            <div className="narrative">
+            <div id="narrative-wrapper-box" className="narrative">
               {paragraphs}
             </div>
           );

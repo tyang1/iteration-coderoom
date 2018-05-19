@@ -7,12 +7,60 @@
     <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <script type="text/babel" src="../src/lib/codemirror.js"></script>
     <script type="text/babel" src="../src/mode/javascript/javascript.js"></script>
+    <style>
+        /* GLOBAL STYLES */
+        @font-face {
+          font-family: "wargames";
+          src: url("fonts/wargames.woff") format('woff');
+        }
+
+        #header {
+          height: 60px;
+          width: 100%;
+          background: #333;
+          padding: 10px;
+          display: flex;
+          justify-content: center;
+          font-family: Aldrich !important;
+        }
+  
+        /* DEMO-SPECIFIC STYLES */
+
+        .typewriter {
+          background-color: #333;
+        }
+  
+        .typewriter h1 {
+          color: lightskyblue;
+          background-color: inherit;
+          font-size: 50px;
+          overflow: hidden; /* Ensures the content is not revealed until the animation */
+          border-right: .15em solid lightskyblue; /* The typwriter cursor */
+          white-space: nowrap; /* Keeps the content on a single line */
+          margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+          letter-spacing: .15em; /* Adjust as needed */
+          animation: 
+            typing 3.5s steps(30, end),
+            blink-caret .5s step-end infinite;
+        }
+  
+        /* The typing effect */
+        @keyframes typing {
+          from { width: 0 }
+          to { width: 100% }
+        }
+  
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+          from, to { border-color: transparent }
+          50% { border-color: lightskyblue }
+        }
+
+      </style>
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -28,6 +76,11 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <div id="header">
+      <div class="typewriter">
+        <h1>SHALL WE PLAY A GAME?</h1>
+      </div>
+    </div>
     <div id="root"></div>
     <!--
       This HTML file is a template.
