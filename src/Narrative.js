@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import './Narrative.css';
 
 import { DM } from './DungeonMaster';
 
