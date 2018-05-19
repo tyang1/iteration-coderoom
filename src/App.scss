@@ -77,6 +77,13 @@
   }
 }
 
+#challenge-options {
+  display: flex;
+  justify-content: flex-start;
+  div {
+    margin-left: 20px;
+  }
+
 .button {
   background-color: white;
   padding: 5px;

@@ -1,14 +1,65 @@
 import React, { Component } from 'react';
 
 const DM = React.createContext();
-var myWorker = new Worker("./worker.js");
+// var  myWorker = new Worker("./worker.js");
 
+// var blob = new Blob( [
+//   "onmessage = function (e) {console.log('Message received from main script');postMessage('hello from worker');}"] );
+
+var blob = new Blob([
+  `onmessage = function (e) { console.log('Message received from main script');
+
+  // console.log(e.data.code);
+
+// may need to do some special parsing
+// This eval's the code and defines the function in our scope
+// eval(e.data.code);
+
+try {
+    eval(e.data.code); 
+} catch (e) {
+    if (e instanceof SyntaxError) {
+        postMessage('no');
+    }
+}
+
+let passed = true; //assuming they are passing
+switch (e.data.challenge) {
+  case 1: //MVP ... they need to write a function that will find an element in an array and return the index
+    passed = true; //assuming they are passing
+    if (findInArray(['a', 'b', 'c'], 'b') !== 1) {
+      passed = false;
+      break;
+    }
+
+    if (findInArray([1, 2, 3], 1) !== 0) {
+      passed = false;
+      break;
+    }
+
+    break;
+  case 2:
+
+    break;
+
+  default:
+    break;
+}
+
+let msg = passed ? 'yes' : 'no';
+postMessage(msg);}`
+]);
+
+
+var blobURL = window.URL.createObjectURL(blob);
+var myWorker = new Worker(blobURL);
 
 class DungeonMaster extends Component {
   constructor(props){
     super(props)
     this.state = {
       
+      isHidden: true,
       keysCollected: 0,
       text: {
           introText: "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...",
@@ -24,34 +75,33 @@ class DungeonMaster extends Component {
 
 
       promptText: '',
-      deskBtn: {disabled: false, active: false, text: 'Check Desk'},
-      nightstandBtn: {disabled: false, active: false, text: 'Open Nightstand Drawer!'},
-      bedBtn: {disabled: false, active: false, text: 'Look Under Bed'},
-      bossBtn: {disabled: false, active: false, text: 'Challenge Boss'},
+      deskBtn: {disabled: false, text: 'Check Desk'},
+      nightstandBtn: {disabled: false, text: 'Open Nightstand Drawer'},
+      bedBtn: {disabled: false, text: 'Look Under Bed'},
+      bossBtn: {disabled: false, text: 'Challenge Boss'},
       goToDesk: () => {
-        console.log("are we in?");
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.deskText);
         // set deskBtn disabled so it's greyed out
-        this.setState({deskBtn: {disabled: true }});
+        this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
       },
       goToNightstand: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.nightstandText);
         // set nightstandBtn disabled so it's greyed out
-        this.setState({nightstandBtn: {disabled: true}});
+        this.setState({nightstandBtn: {disabled: true, text: 'Open Nightstand Drawer'}});
       },
       goToBed: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.bedText);
         // set bedBtn disabled so it's greyed out
-        this.setState({bedBtn: {disabled: true}});
+        this.setState({bedBtn: {disabled: true, text: 'Look Under Bed'}});
       },
       challengeBoss: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.bossChallengeText);
         // set bedBtn disabled so it's greyed out
-        this.setState({bossBtn: {disabled: true}});
+        this.setState({bossBtn: {disabled: true, text: 'Challenge Boss'}});
       },
       challengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
@@ -66,14 +116,16 @@ class DungeonMaster extends Component {
         // we also need to redirect the player to the winner screen
       },
       toggleHidden: function() {
-        this.setState({isHidden: !this.state.isHidden});
+        this.setState({isHidden: false});
       },
       challengeActive: true,
       challengePrompt: 'Your first challenge:',
       startingCode: 'function test (params) {}',
+      challengeResponseText: 'You did it!!!',
       submitTest: function(code) {
-        console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
-        // myWorker.postMessage({ code, challenge: 1 })
+        //console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
+        // console.log(myWorker);
+        myWorker.postMessage({ code:code, challenge: 1 })
       }
     }
     this.state.goToDesk = this.state.goToDesk.bind(this);

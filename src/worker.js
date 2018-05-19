@@ -25,8 +25,8 @@ console.log(e.data.code);
 
 // may need to do some special parsing
 // This eval's the code and defines the function in our scope
-eval(e.data.code);
-
+let evalRet = eval(e.data.code);
+console.log('evalRet: ', evalRet);
 // testing
 // eval(`function findInArray (arr, ele){
 //   for (let i=0; i<arr.length; i++){

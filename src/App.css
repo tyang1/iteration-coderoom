@@ -63,6 +63,12 @@
   color: black;
   font-size: 15px; }
 
+#challenge-options {
+  display: flex;
+  justify-content: flex-start; }
+  #challenge-options div {
+    margin-left: 20px; }
+
 .button {
   background-color: white;
   padding: 5px;
@@ -81,3 +87,4 @@
     transform: rotate(0deg); }
   to {
     transform: rotate(360deg); } }
+=======
