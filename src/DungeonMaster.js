@@ -24,15 +24,30 @@ try {
 }
 
 let passed = true; //assuming they are passing
+let val;
 switch (e.data.challenge) {
   case 1: //MVP ... they need to write a function that will find an element in an array and return the index
     passed = true; //assuming they are passing
-    if (findInArray(['a', 'b', 'c'], 'b') !== 1) {
+
+try {
+  val = findInArray(['a', 'b', 'c'], 'b');
+} catch (e) {
+  postMessage('no');
+}
+
+    if ( val !== 1) {
       passed = false;
       break;
     }
 
-    if (findInArray([1, 2, 3], 1) !== 0) {
+    try {
+      val = findInArray([1, 2, 3], 1);
+    } catch (e) {
+      postMessage('no');
+    }
+
+
+    if ( val !== 0) {
       passed = false;
       break;
     }
@@ -145,12 +160,14 @@ class DungeonMaster extends Component {
     this.state.submitTest = this.state.submitTest.bind(this);
     this.state.toggleHidden = this.state.toggleHidden.bind(this);
     myWorker.onmessage = (e) => {
-      console.log( e.data );
+      console.log( e.data, "NO!!" );
       if (e.data === 'yes') {
         console.log("made it in!");
         this.state.activeNarrative.push(this.state.text.completionText);
         this.setState({keysCollected: this.state.keysCollected + 28});
         this.setState({challengeResponseText: 'You did it!!!'});
+      } else if (e.data === 'no') {
+        this.setState({challengeResponseText: 'That\'s an interesting interpretation -- do you mind walking me through your logic?'});
       }
       console.log('Message received from worker');
       // DEMO: just change the url on success or failure of one challenge

@@ -5,7 +5,7 @@ import { render } from "react-dom";
 
 const Timer = props => (
   <div>
-    Timer placeholder
+    {/* Timer placeholder */}
   </div>
 );
 
