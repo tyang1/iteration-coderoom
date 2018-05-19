@@ -19,6 +19,9 @@
   height: 600px;
   text-align: center; }
 
+.coding-wrapper {
+  text-align: left; }
+
 .inventory {
   color: lightgray;
   background-color: black;

@@ -1,34 +1,50 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { DM } from './DungeonMaster';
-import CodeMirror from 'codemirror';
-// import "./CodingBox.css";
+import CodeMirror from 'react-codemirror'
+import '../node_modules/codemirror/mode/javascript/javascript'
+import "./codemirror.css";
 
-let editor;
+class CodeMirrorApp extends Component {
+  constructor (props) {
+      super(props);
+      this.state = {
+        code: this.props.startingCode,
+      }
+      this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(newCode) {
+      this.setState({code: newCode});
+  }
+
+  render() {
+      const options = {
+          lineNumbers: true,
+          mode: 'javascript'
+      };
+      return(
+          <div>
+              <CodeMirror value={this.state.code} onChange={this.handleChange} options={options}/>
+              <button onClick={() => this.props.submitTest(this.state.code)}>Submit code!</button>
+          </div>
+      );
+  }
+}
 
 class CodingBox extends Component {
-  componentDidMount() {
-    editor = CodeMirror.fromTextArea(document.getElementById("demotext"), {
-      lineNumbers: true,
-      mode: "javascript",
-      matchBrackets: true
-    });
-  }
 
   render() {
     return (
       <DM.Consumer>
         {context => {
-          if (!context.challengeActive) return <div></div>
+          if (!context.challengeActive) return <div className="coding-wrapper">Awaiting challenge...</div>
           // var doc = editor.getDoc();
           // console.log(doc);
           // console.log(doc.getValue());
           return (
             <div className="coding-wrapper">
-              <form className="form">
-                <textarea id="demotext"></textarea>
-                <button type="button" onClick={() => context.submitTest(editor.getValue())}>RUN</button>
-              </form>
+              <center>{context.challengePrompt}</center>
+              <CodeMirrorApp submitTest={context.submitTest} startingCode={context.startingCode}/>
             </div>
             )
         }}
