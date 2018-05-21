@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 const DM = React.createContext();
-// var  myWorker = new Worker("./worker.js");
-
-// var blob = new Blob( [
-//   "onmessage = function (e) {console.log('Message received from main script');postMessage('hello from worker');}"] );
 
 var blob = new Blob([
   `onmessage = function (e) { console.log('Message received from main script');
@@ -45,8 +41,6 @@ try {
     } catch (e) {
       postMessage('no');
     }
-
-
     if ( val !== 0) {
       passed = false;
       break;
@@ -94,6 +88,27 @@ class DungeonMaster extends Component {
       nightstandBtn: {disabled: false, text: 'Open Nightstand Drawer'},
       bedBtn: {disabled: false, text: 'Look Under Bed'},
       bossBtn: {disabled: false, text: 'Challenge Boss'},
+      
+      seconds: 0,
+      minutes: 0,
+      hours: 0,
+     
+      incrementTime: () => {
+        this.state.seconds++;
+        if (this.state.seconds >= 60) {
+          this.state.seconds = 0;
+          this.state.minutes++;
+          if (this.state.minutes >= 60) {
+            this.state.minutes = 0;
+            this.state.hours++;
+          }
+        };
+      },
+
+      timer: () => {
+        setTimeout(() => {this.state.incrementTime(); this.state.timer()}, 1000)
+      },
+      
       goToDesk: () => {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.deskText);
@@ -105,6 +120,9 @@ class DungeonMaster extends Component {
 
         // set deskBtn disabled so it's greyed out
         this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
+
+        //set timer
+        
       },
       goToNightstand: function() {
         // here we add the relevant narrative text to the active narrative array
@@ -150,7 +168,9 @@ class DungeonMaster extends Component {
         // console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
         // console.log(myWorker);
         myWorker.postMessage({ code:code, challenge: 1 })
-      }
+      },
+
+      challengeTime: 0
     }
     this.state.goToDesk = this.state.goToDesk.bind(this);
     this.state.goToBed = this.state.goToBed.bind(this);
@@ -169,13 +189,12 @@ class DungeonMaster extends Component {
       } else if (e.data === 'no') {
         this.setState({challengeResponseText: 'That\'s an interesting interpretation -- do you mind walking me through your logic?'});
       }
-      //console.log('Message received from worker');
-      // DEMO: just change the url on success or failure of one challenge
-     // if (e.data === 'yes') window.URL('/win.html');
-     // else window.URL('/lose.html');
+
     };
 
     // bind in-state functions here
+
+
 }
 
 render() {
