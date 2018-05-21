@@ -9,7 +9,7 @@
 .narrative {
   float: left;
   width: 35%;
-  height: 600px;
+  height: 650px;
   text-align: left;
   overflow: auto; }
 
@@ -25,7 +25,7 @@
 .interactive {
   margin-left: 35%;
   width: 65%;
-  height: 600px;
+  height: 650px;
   text-align: center; }
 
 .coding-wrapper {
@@ -66,10 +66,8 @@
 #challenge-options {
   display: flex;
   justify-content: flex-start; }
-
-#challenge-options div {
+  #challenge-options div {
     margin-left: 20px; }
- 
 
 .button {
   background-color: white;
@@ -83,3 +81,13 @@
 .timer {
   margin: auto;
   padding: 5px; }
+
+.button:disabled {
+  background: #dddddd; }
+
+#code-btn {
+  font-size: 12px; }
+
+#challenge-text {
+  width: 400px;
+  margin-bottom: 20px; }
