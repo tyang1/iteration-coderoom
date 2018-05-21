@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 const DM = React.createContext();
 // var  myWorker = new Worker("./worker.js");
@@ -65,70 +65,93 @@ let msg = passed ? 'yes' : 'no';
 postMessage(msg);}`
 ]);
 
-
 var blobURL = window.URL.createObjectURL(blob);
 var myWorker = new Worker(blobURL);
 
 class DungeonMaster extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      
+      gameStarted: false,
+      checkpoint: [0, [0, 0, 0]],
       isHidden: true,
       keysCollected: 0,
       text: {
-          introText: "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...",
-          deskText: "You head to the desk and search amongst the scattered sheets of paper: ",
-          nightstandText: "Wondering what might be inside you open the nightstand drawer: ",
-          bedText: "Hoping no monsters attack, you cautiously peek under the bed: ",
-          completionText: "Congratulations on completion of the challenge. You received 28 keys!",
-          bossChallengeText: "You have collected all the keys to the keyboard. Time for the Boss battle!",
-          bossDefeatText: "CONGRATULATIONS!!! You have succesfully defeated the Boss Challenge and ESCAPED!!!"
+        introText:
+          "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...",
+        deskText:
+          "You head to the desk and search amongst the scattered sheets of paper: ",
+        nightstandText:
+          "Wondering what might be inside you open the nightstand drawer: ",
+        bedText:
+          "Hoping no monsters attack, you cautiously peek under the bed: ",
+        completionText:
+          "Congratulations on completion of the challenge. You received a key!",
+        bossChallengeText:
+          "You have collected all the keys to unlock the door. Time for the Boss battle!",
+        bossDefeatText:
+          "CONGRATULATIONS!!! You have succesfully defeated the Boss Challenge and ESCAPED!!!"
       },
 
-      activeNarrative: ['You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...'],
+      activeNarrative: [
+        "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings..."
+      ],
 
-
-      promptText: '',
-      deskBtn: {disabled: false, text: 'Check Desk'},
-      nightstandBtn: {disabled: false, text: 'Open Nightstand Drawer'},
-      bedBtn: {disabled: false, text: 'Look Under Bed'},
-      bossBtn: {disabled: false, text: 'Challenge Boss'},
+      promptText: "",
+      deskBtn: { disabled: false, text: "Check Desk" },
+      nightstandBtn: { disabled: false, text: "Open Nightstand Drawer" },
+      bedBtn: { disabled: false, text: "Look Under Bed" },
+      bossBtn: { disabled: false, text: "Challenge Boss" },
       goToDesk: () => {
+        // start the game
+        this.state.gameStarted = true;
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.deskText);
 
-        this.setState({challengePrompt:'Write a function that accepts an array and a value as parameters. It will return the index of the value in the array'});
+        this.setState({
+          challengePrompt:
+            "Write a function that accepts an array and a value as parameters. It will return the index of the value in the array"
+        });
 
         // reset challengeResponseText to an empty string at beginning of challenge
-        this.setState({challengeResponseText: ''});
+        this.setState({ challengeResponseText: "" });
 
         // set deskBtn disabled so it's greyed out
-        this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
+        this.setState({ deskBtn: { disabled: true, text: "Check Desk" } });
       },
       goToNightstand: function() {
+        // start the game
+
+        this.state.gameStarted = true;
+
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.nightstandText);
         // reset challengeResponseText to an empty string at beginning of challenge
-        this.setState({challengeResponseText: ''});
+        this.setState({ challengeResponseText: "" });
         // set nightstandBtn disabled so it's greyed out
-        this.setState({nightstandBtn: {disabled: true, text: 'Open Nightstand Drawer'}});
+        this.setState({
+          nightstandBtn: { disabled: true, text: "Open Nightstand Drawer" }
+        });
       },
       goToBed: function() {
+        // start the game
+
+        this.state.gameStarted = true;
+
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.bedText);
         // reset challengeResponseText to an empty string at beginning of challenge
-        this.setState({challengeResponseText: ''});
+        this.setState({ challengeResponseText: "" });
         // set bedBtn disabled so it's greyed out
-        this.setState({bedBtn: {disabled: true, text: 'Look Under Bed'}});
+        this.setState({ bedBtn: { disabled: true, text: "Look Under Bed" } });
       },
       challengeBoss: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.bossChallengeText);
         // reset challengeResponseText to an empty string at beginning of challenge
-        this.setState({challengeResponseText: ''});
+        this.setState({ challengeResponseText: "" });
         // set bedBtn disabled so it's greyed out
-        this.setState({bossBtn: {disabled: true, text: 'Challenge Boss'}});
+        this.setState({ bossBtn: { disabled: true, text: "Challenge Boss" } });
       },
       bossChallengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
@@ -136,55 +159,56 @@ class DungeonMaster extends Component {
         // we also need to redirect the player to the winner screen
       },
       toggleHidden: function() {
-        this.setState({isHidden: false});
+        this.setState({ isHidden: false });
       },
       challengeActive: true,
-      challengePrompt: '',
+      challengePrompt: "",
       startingCode: `function findInArray (arr, elem) {
 // your code here
 
 }`,
-      challengeResponseText: '',
+      challengeResponseText: "",
 
       submitTest: function(code) {
         // console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
         // console.log(myWorker);
-        myWorker.postMessage({ code:code, challenge: 1 })
+        if (this.state.gameStarted)
+          myWorker.postMessage({ code: code, challenge: 1 });
       }
-    }
+    };
     this.state.goToDesk = this.state.goToDesk.bind(this);
     this.state.goToBed = this.state.goToBed.bind(this);
     this.state.goToNightstand = this.state.goToNightstand.bind(this);
     this.state.challengeBoss = this.state.challengeBoss.bind(this);
-    this.state.bossChallengeCompleted = this.state.bossChallengeCompleted.bind(this);
+    this.state.bossChallengeCompleted = this.state.bossChallengeCompleted.bind(
+      this
+    );
     this.state.submitTest = this.state.submitTest.bind(this);
     this.state.toggleHidden = this.state.toggleHidden.bind(this);
-    myWorker.onmessage = (e) => {
+    myWorker.onmessage = e => {
       //console.log( e.data, "NO!!" );
-      if (e.data === 'yes') {
-       // console.log("made it in!");
+      if (e.data === "yes") {
+        // console.log("made it in!");
         this.state.activeNarrative.push(this.state.text.completionText);
-        this.setState({keysCollected: this.state.keysCollected + 28});
-        this.setState({challengeResponseText: 'You did it!!!'});
-      } else if (e.data === 'no') {
-        this.setState({challengeResponseText: 'That\'s an interesting interpretation -- do you mind walking me through your logic?'});
+        this.setState({
+          keysCollected: this.state.keysCollected + 1,
+          challengeResponseText: "You did it!!!"
+        });
+      } else if (e.data === "no") {
+        this.setState({ challengeResponseText: "Try again." });
       }
       //console.log('Message received from worker');
       // DEMO: just change the url on success or failure of one challenge
-     // if (e.data === 'yes') window.URL('/win.html');
-     // else window.URL('/lose.html');
+      // if (e.data === 'yes') window.URL('/win.html');
+      // else window.URL('/lose.html');
     };
 
     // bind in-state functions here
-}
+  }
 
-render() {
-    return (
-        <DM.Provider value={this.state}>
-            {this.props.children}
-        </DM.Provider>
-    );
+  render() {
+    return <DM.Provider value={this.state}>{this.props.children}</DM.Provider>;
   }
 }
 
-export { DungeonMaster,  DM };
+export { DungeonMaster, DM };
