@@ -8,6 +8,7 @@ const PORT = 8080;
 app.use(express.static(path.join(__dirname, 'build')));
 
 
+app.post('/', )
 app.get('/', (req, res) => {res.sendFile(__dirname + '/build/index.html')});
 
 app.get('/game', (req, res) => {res.sendFile(__dirname + '/build/game.html')});
