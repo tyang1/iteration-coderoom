@@ -194,11 +194,9 @@ class DungeonMaster extends Component {
         // console.log(myWorker);
         if (this.state.gameStarted)
           myWorker.postMessage({ code: code, challenge: 1 });
-      }
+      },
     };
-
-      challengeTime: 0
-    }
+    
     this.state.goToDesk = this.state.goToDesk.bind(this);
     this.state.goToBed = this.state.goToBed.bind(this);
     this.state.goToNightstand = this.state.goToNightstand.bind(this);
