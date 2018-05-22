@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://tk:tk1234@ds060649.mlab.com:60649/coderoomerino');
+const bcrypt = require('bcrypt');
+
+
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -17,6 +20,7 @@ const userSchema = new Schema({
     totalTime: Number,
     createdAt: Date,
 });
+
 
 const User = mongoose.model('User', userSchema);
 
