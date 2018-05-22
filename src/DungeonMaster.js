@@ -63,6 +63,27 @@ postMessage(msg);}`
 var blobURL = window.URL.createObjectURL(blob);
 var myWorker = new Worker(blobURL);
 
+let seconds = 0;
+const incrementTime = () => {
+  seconds++;
+  this.timerOn = false;
+};
+
+const timer = () => {
+  setTimeout(() => {incrementTime(); timer()}, 1000);
+  this.timerOn = true;
+  console.log(seconds);
+};
+
+class Timer{
+  constructor(seconds) {
+    this.seconds = timer();
+    if (this.timerOn === true) {
+      return;
+    }
+  }
+};
+
 class DungeonMaster extends Component {
   constructor(props){
     super(props)
@@ -80,7 +101,7 @@ class DungeonMaster extends Component {
           bossDefeatText: "CONGRATULATIONS!!! You have succesfully defeated the Boss Challenge and ESCAPED!!!"
       },
 
-      activeNarrative: ['You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...'],
+      activeNarrative: ['You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...you notice that the desk drawer looks like a good place to find a hint!'],
 
 
       promptText: '',
@@ -89,26 +110,8 @@ class DungeonMaster extends Component {
       bedBtn: {disabled: false, text: 'Look Under Bed'},
       bossBtn: {disabled: false, text: 'Challenge Boss'},
       
-      seconds: 0,
-      minutes: 0,
-      hours: 0,
-     
-      incrementTime: () => {
-        this.state.seconds++;
-        if (this.state.seconds >= 60) {
-          this.state.seconds = 0;
-          this.state.minutes++;
-          if (this.state.minutes >= 60) {
-            this.state.minutes = 0;
-            this.state.hours++;
-          }
-        };
-      },
 
-      timer: () => {
-        setTimeout(() => {this.state.incrementTime(); this.state.timer()}, 1000)
-      },
-      
+     
       goToDesk: () => {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.text.deskText);
@@ -122,7 +125,7 @@ class DungeonMaster extends Component {
         this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
 
         //set timer
-        
+        const startTime = new Timer(0);
       },
       goToNightstand: function() {
         // here we add the relevant narrative text to the active narrative array
@@ -131,6 +134,8 @@ class DungeonMaster extends Component {
         this.setState({challengeResponseText: ''});
         // set nightstandBtn disabled so it's greyed out
         this.setState({nightstandBtn: {disabled: true, text: 'Open Nightstand Drawer'}});
+        const startTime = new Timer(0);
+        
       },
       goToBed: function() {
         // here we add the relevant narrative text to the active narrative array
@@ -139,6 +144,7 @@ class DungeonMaster extends Component {
         this.setState({challengeResponseText: ''});
         // set bedBtn disabled so it's greyed out
         this.setState({bedBtn: {disabled: true, text: 'Look Under Bed'}});
+        const startTime = new Timer(0);
       },
       challengeBoss: function() {
         // here we add the relevant narrative text to the active narrative array
@@ -147,11 +153,16 @@ class DungeonMaster extends Component {
         this.setState({challengeResponseText: ''});
         // set bedBtn disabled so it's greyed out
         this.setState({bossBtn: {disabled: true, text: 'Challenge Boss'}});
+        const startTime = new Timer(0);
       },
       bossChallengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.push(this.state.bossDefeatText);
         // we also need to redirect the player to the winner screen
+
+        //total time
+        //how to sum up these values from the different elements of state?
+       // this.setState({challengeTime: });
       },
       toggleHidden: function() {
         this.setState({isHidden: false});
@@ -185,9 +196,9 @@ class DungeonMaster extends Component {
        // console.log("made it in!");
         this.state.activeNarrative.push(this.state.text.completionText);
         this.setState({keysCollected: this.state.keysCollected + 28});
-        this.setState({challengeResponseText: 'You did it!!!'});
+        this.setState({challengeResponseText: 'Nice one!'});
       } else if (e.data === 'no') {
-        this.setState({challengeResponseText: 'That\'s an interesting interpretation -- do you mind walking me through your logic?'});
+        this.setState({challengeResponseText: 'Try again bud...'});
       }
 
     };

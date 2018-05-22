@@ -3,14 +3,14 @@ import { render } from "react-dom";
 // import "./Timer.css";
 
 
-class Timer extends React.Component {
-  constructor(props) {
-    super(props)
-    Timer = props => (
-      <div>
-        {/* Timer placeholder */}
-      </div>
-    );
-  }
-}
-export default Timer;
+// class Timer extends React.Component {
+//   constructor(props) {
+//     super(props)
+//     Timer = props => (
+//       <div>
+//         {/* Timer placeholder */}
+//       </div>
+//     );
+//   }
+// }
+//export default Timer;
