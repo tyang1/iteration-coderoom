@@ -10,8 +10,8 @@ db.once('open', function() {
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    username: String,
-    password: String,
+    username: {type:String, required: true},
+    password: {type:String, required: true},
     level: Number,
     totalTime: Number,
     createdAt: Date,
