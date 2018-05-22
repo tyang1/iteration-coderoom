@@ -12,6 +12,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: {type:String, required: true},
     password: {type:String, required: true},
+    salt: String,
     level: Number,
     totalTime: Number,
     createdAt: Date,
