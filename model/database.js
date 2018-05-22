@@ -4,7 +4,7 @@ mongoose.connect('mongodb://tk:tk1234@ds060649.mlab.com:60649/coderoomerino');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
- console.log('we are connected!');
+	console.log('we are connected!');
 });
 
 const Schema = mongoose.Schema;
@@ -14,7 +14,7 @@ const userSchema = new Schema({
     password: {type:String, required: true},
     level: Number,
     totalTime: Number,
-    createdAt: Date,
+    createdAt: Date, 
 });
 
 const User = mongoose.model('User', userSchema);
