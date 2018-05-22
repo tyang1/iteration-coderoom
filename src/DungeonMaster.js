@@ -71,7 +71,7 @@ const incrementTime = () => {
 const timer = () => {
   setTimeout(() => {incrementTime(); timer()}, 1000);
   this.timerOn = true;
-  console.log(seconds);
+  // console.log(seconds);
 };
 
 class Timer{
@@ -88,7 +88,7 @@ class DungeonMaster extends Component {
     super(props);
     this.state = {
       gameStarted: false,
-      checkpoint: [0, [0, 0, 0]],
+      checkpoint: [0, 0, [0, 0, 0]], // current challenge, current level, array of completed challenges
       isHidden: true,
       keysCollected: 0,
       text: {
@@ -126,6 +126,7 @@ class DungeonMaster extends Component {
   
 
       goToDesk: () => {
+        this.state.checkpoint[0] = 1;
         // start the game
         this.state.gameStarted = true;
         // here we add the relevant narrative text to the active narrative array
@@ -149,6 +150,8 @@ class DungeonMaster extends Component {
 
       },
       goToNightstand: function() {
+        this.state.checkpoint[0] = 2;
+
         // start the game
 
         this.state.gameStarted = true;
@@ -164,6 +167,8 @@ class DungeonMaster extends Component {
         
       },
       goToBed: function() {
+        this.state.checkpoint[0] = 3;
+
         // start the game
 
         this.state.gameStarted = true;
@@ -178,6 +183,8 @@ class DungeonMaster extends Component {
         const startTime = new Timer(0);
       },
       challengeBoss: function() {
+        this.state.checkpoint[0] = 4;
+
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.unshift(this.state.text.bossChallengeText);
         // reset challengeResponseText to an empty string at beginning of challenge
@@ -213,11 +220,9 @@ class DungeonMaster extends Component {
         // console.log(myWorker);
         if (this.state.gameStarted)
           myWorker.postMessage({ code: code, challenge: 1 });
-      }
+      },
     };
-
-      challengeTime: 0
-    }
+    
     this.state.goToDesk = this.state.goToDesk.bind(this);
     this.state.goToBed = this.state.goToBed.bind(this);
     this.state.goToNightstand = this.state.goToNightstand.bind(this);
@@ -231,9 +236,12 @@ class DungeonMaster extends Component {
       //console.log( e.data, "NO!!" );
 
       if (e.data === 'yes') {
+        // look at the checkpoint array, update the index of the current challenge, set it to completed
+        this.state.checkpoint[2][this.state.checkpoint[0] - 1] = 1;
        // console.log("made it in!");
         this.state.activeNarrative.push(this.state.text.completionText);
         this.setState({keysCollected: this.state.keysCollected + 1});
+        if (this.state.keysCollected === 3) this.state.toggleHidden();
         this.setState({challengeResponseText: 'Nice one!'});
       } else if (e.data === 'no') {
         this.setState({challengeResponseText: 'Try again bud...'});
