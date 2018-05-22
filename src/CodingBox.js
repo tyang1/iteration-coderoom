@@ -13,6 +13,7 @@ class CodeMirrorApp extends Component {
       }
       this.handleChange = this.handleChange.bind(this);
   }
+  
   handleChange(newCode) {
       this.setState({code: newCode});
   }

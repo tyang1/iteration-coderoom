@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 const DM = React.createContext();
-// var  myWorker = new Worker("./worker.js");
-
-// var blob = new Blob( [
-//   "onmessage = function (e) {console.log('Message received from main script');postMessage('hello from worker');}"] );
 
 var blob = new Blob([
   `onmessage = function (e) { console.log('Message received from main script');
@@ -45,8 +41,6 @@ try {
     } catch (e) {
       postMessage('no');
     }
-
-
     if ( val !== 0) {
       passed = false;
       break;
@@ -97,11 +91,32 @@ class DungeonMaster extends Component {
         "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings..."
       ],
 
-      promptText: "",
-      deskBtn: { disabled: false, text: "Check Desk" },
-      nightstandBtn: { disabled: false, text: "Open Nightstand Drawer" },
-      bedBtn: { disabled: false, text: "Look Under Bed" },
-      bossBtn: { disabled: false, text: "Challenge Boss" },
+      promptText: '',
+      deskBtn: {disabled: false, text: 'Check Desk'},
+      nightstandBtn: {disabled: false, text: 'Open Nightstand Drawer'},
+      bedBtn: {disabled: false, text: 'Look Under Bed'},
+      bossBtn: {disabled: false, text: 'Challenge Boss'},
+      
+      seconds: 0,
+      minutes: 0,
+      hours: 0,
+     
+      incrementTime: () => {
+        this.state.seconds++;
+        if (this.state.seconds >= 60) {
+          this.state.seconds = 0;
+          this.state.minutes++;
+          if (this.state.minutes >= 60) {
+            this.state.minutes = 0;
+            this.state.hours++;
+          }
+        };
+      },
+
+      timer: () => {
+        setTimeout(() => {this.state.incrementTime(); this.state.timer()}, 1000)
+      },
+  
       goToDesk: () => {
         // start the game
         this.state.gameStarted = true;
@@ -117,7 +132,12 @@ class DungeonMaster extends Component {
         this.setState({ challengeResponseText: "" });
 
         // set deskBtn disabled so it's greyed out
-        this.setState({ deskBtn: { disabled: true, text: "Check Desk" } });
+
+        this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
+
+        //set timer
+        
+
       },
       goToNightstand: function() {
         // start the game
@@ -176,6 +196,9 @@ class DungeonMaster extends Component {
           myWorker.postMessage({ code: code, challenge: 1 });
       }
     };
+
+      challengeTime: 0
+    }
     this.state.goToDesk = this.state.goToDesk.bind(this);
     this.state.goToBed = this.state.goToBed.bind(this);
     this.state.goToNightstand = this.state.goToNightstand.bind(this);
