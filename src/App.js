@@ -14,7 +14,7 @@ class App extends Component {
           <Narrative />
           <Interactive />
           <Inventory />
-          <Timer />
+          {/* <Timer /> */}
         </div>
       </DungeonMaster>
     );
