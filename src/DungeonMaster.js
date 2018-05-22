@@ -106,7 +106,7 @@ class DungeonMaster extends Component {
         // start the game
         this.state.gameStarted = true;
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.push(this.state.text.deskText);
+        this.state.activeNarrative.unshift(this.state.text.deskText);
 
         this.setState({
           challengePrompt:
@@ -125,7 +125,7 @@ class DungeonMaster extends Component {
         this.state.gameStarted = true;
 
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.push(this.state.text.nightstandText);
+        this.state.activeNarrative.unshift(this.state.text.nightstandText);
         // reset challengeResponseText to an empty string at beginning of challenge
         this.setState({ challengeResponseText: "" });
         // set nightstandBtn disabled so it's greyed out
@@ -139,7 +139,7 @@ class DungeonMaster extends Component {
         this.state.gameStarted = true;
 
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.push(this.state.text.bedText);
+        this.state.activeNarrative.unshift(this.state.text.bedText);
         // reset challengeResponseText to an empty string at beginning of challenge
         this.setState({ challengeResponseText: "" });
         // set bedBtn disabled so it's greyed out
@@ -147,7 +147,7 @@ class DungeonMaster extends Component {
       },
       challengeBoss: function() {
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.push(this.state.text.bossChallengeText);
+        this.state.activeNarrative.unshift(this.state.text.bossChallengeText);
         // reset challengeResponseText to an empty string at beginning of challenge
         this.setState({ challengeResponseText: "" });
         // set bedBtn disabled so it's greyed out
@@ -155,7 +155,7 @@ class DungeonMaster extends Component {
       },
       bossChallengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.push(this.state.bossDefeatText);
+        this.state.activeNarrative.unshift(this.state.bossDefeatText);
         // we also need to redirect the player to the winner screen
       },
       toggleHidden: function() {
@@ -189,7 +189,7 @@ class DungeonMaster extends Component {
       //console.log( e.data, "NO!!" );
       if (e.data === "yes") {
         // console.log("made it in!");
-        this.state.activeNarrative.push(this.state.text.completionText);
+        this.state.activeNarrative.unshift(this.state.text.completionText);
         this.setState({
           keysCollected: this.state.keysCollected + 1,
           challengeResponseText: "You did it!!!"
