@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bcrypt": "^2.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "codemirror": "^5.37.0",
     "express": "^4.16.3",
