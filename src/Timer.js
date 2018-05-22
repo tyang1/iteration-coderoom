@@ -13,4 +13,8 @@
 //     );
 //   }
 // }
+<<<<<<< HEAD
 // export default Timer;
+=======
+//export default Timer;
+>>>>>>> aabf530381b4af01e0ced99319cf8f052f58a333

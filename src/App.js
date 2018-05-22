@@ -16,6 +16,10 @@ class App extends Component {
           <Narrative />
           <Interactive />
           <Inventory />
+<<<<<<< HEAD
+=======
+
+>>>>>>> aabf530381b4af01e0ced99319cf8f052f58a333
         </div>
       </DungeonMaster>
     );
