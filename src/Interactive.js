@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { DM } from './DungeonMaster';
 import ButtonContainer from './ButtonContainer.js';
 // import Button from './Button.js';
-import Timer from './Timer.js';
+//import Timer from './Timer.js';
 import CodingBox from './CodingBox.js';
 
 /**
@@ -19,7 +19,7 @@ class Interactive extends Component {
             <div className="interactive">
               <ButtonContainer />
               <CodingBox />
-              <Timer />
+              {/*<Timer /> */}
             </div>
           )}}
       </DM.Consumer>
