@@ -5,14 +5,18 @@ const SALT_WORK_FACTOR = 10;
 
 userController.checkExisting = (req,res,next) => {
   console.log("we are on server port!!!!!")
-    if(req.body.username && req.body.password){
-        User.count({username : req.body.username}, (err,results) => {
-            if(err){ res.send(err)}
-            if(results !== 0) {res.send("the username is taken.")};
-            next();
+  console.log("here are the req.body in existing", req.body.name, req.body.password)
+    if(req.body.name && req.body.password){
+      console.log("there are username and pwd")
+        User.count({username : req.body.name}, (err,results) => {
+            if(err){ res.send(err)};
+            console.log("here is the result", results);
+            if(results > 0) {res.send("the username is taken.")} 
+            else{next()}
         })
     }else{
-      res.send("The username or password cannot be empty.")
+      res.send(false)
+
     }
 }
 
@@ -21,7 +25,7 @@ userController.createUser = (req, res, next) => {
   let salt;
   let hash;
   if (
-    typeof req.body.username === "string" &&
+    typeof req.body.name === "string" &&
     typeof req.body.password === "string"
   ) {
     let promise = new Promise(((resolve,reject) => {
@@ -41,7 +45,7 @@ userController.createUser = (req, res, next) => {
       // console.log("Armannnnnn");
       User.create(
       {
-        username: req.body.username,
+        username: req.body.name,
         password: password,
         salt: salt,
         level: 0,
@@ -53,7 +57,7 @@ userController.createUser = (req, res, next) => {
           res.send(err);
         }else{
           console.log("created user!!!!")
-          res.send(true);
+          res.send(updated);
         }
       }
     )})
@@ -61,10 +65,12 @@ userController.createUser = (req, res, next) => {
     //   console.log("ERRRRRR", err)
     // }
       }
-    next();
+    // next();
 };
 
 userController.verifyUser = (req, res, next) => {
+  console.log("req body", req.body);
+  let {name,password} = req.body;
   // console.log('req is ', req);
   console.log('req.body.username is ', req.body.username);
   console.log('req.body.password is :', req.body.password);
@@ -73,6 +79,7 @@ userController.verifyUser = (req, res, next) => {
     console.log('entered findOne method, user document (object) is: ', user);
     // SELECT * FROM users WHERE username = Arman (for SQL)
     if (err) return res.status(400).render('error', { error: err });
+    if (user === null) res.send(false);
     let plainPass = req.body.password; //ab2
     let userHash = user.password; //hashed ab2
     bcrypt.compare(plainPass, userHash, (err2, isMatch) => {
