@@ -19,7 +19,7 @@ class Inventory extends Component {
               // this is where any work happens that requires state. DungeonMaster's "this.state" can be reffered to as "context" here
                 <div className="inventory">
                     <div className="name-inventory">Inventory:</div>
-                    <p className="name-inventory">Keys Collected: {context.keysCollected} / 3</p>
+                    <p className="name-inventory">🔑: {context.keysCollected} / 3</p>
                 </div>
             )}
           </DM.Consumer>
