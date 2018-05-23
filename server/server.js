@@ -4,14 +4,13 @@ const path = require('path');
 const userController = require('./../controller/userController');
 const bodyParser = require('body-parser')
 
-const port = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 // const port = 8080;
 
-// const server = http.createServer(app);
-// server.listen(8080);
-// server.on('listening', () => {
-//   console.log('Server is listening on port: 3000');
-// });
+
+//redirect after successful login
+const redirect = (req, res) => res.send(true);
+
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -23,7 +22,9 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'build')));
 
 
-app.post('/', userController.checkExisting,userController.createUser);
+app.post('/', userController.checkExisting, userController.createUser);
+app.post('/login', userController.verifyUser, /*cookieController.setSSIDCookie,*/ /*sessionController.startSession,*/ redirect );
+
 app.get('/', (req, res) => {res.sendFile(__dirname + '/build/index.html')});
 
 app.get('/game', (req, res) => {res.sendFile(__dirname + '/build/game.html')});
@@ -35,4 +36,6 @@ app.get('/lose', (req, res) => {res.sendFile(__dirname + '/build/lose.html')});
 
 app.get('/fonts/Wargames.woff', (req, res) => res.sendFile(__dirname + '/fonts/Wargames.woff'));
 
-app.listen(port, () => console.log(`Listening to PORT: ${port}`));
+
+app.listen(PORT, () => console.log(`Listening to PORT: ${PORT}`));
+
