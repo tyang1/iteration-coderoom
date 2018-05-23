@@ -6,6 +6,9 @@ const bodyParser = require('body-parser')
 
 const PORT = 8080;
 
+//redirect after successful login
+// const redirect = (req, res) => res.redirect('/**logged-in-url**');
+
 app.use(bodyParser.json());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -16,7 +19,9 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'build')));
 
 
-app.post('/', userController.checkExisting,userController.createUser);
+app.post('/', userController.checkExisting, userController.createUser);
+app.post('/login', userController.verifyUser, /*cookieController.setSSIDCookie,*/ /*sessionController.startSession, */ /*redirect */);
+
 app.get('/', (req, res) => {res.sendFile(__dirname + '/build/index.html')});
 
 app.get('/game', (req, res) => {res.sendFile(__dirname + '/build/game.html')});

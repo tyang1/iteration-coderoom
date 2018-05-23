@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://tk:tk1234@ds060649.mlab.com:60649/coderoomerino');
+mongoose.connect('mongodb://ab:ab1234@ds060649.mlab.com:60649/coderoomerino');
 const bcrypt = require('bcrypt');
 
 
