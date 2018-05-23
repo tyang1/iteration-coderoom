@@ -13,7 +13,7 @@ class Login extends Component {
   }
   verifyUser = e => {
     e.preventDefault();
-    axios.post('/', {
+    axios.post('http://localhost:8080/', {
       name: e.target.username.value,
       password: e.target.password.value,
     }).then(res => {

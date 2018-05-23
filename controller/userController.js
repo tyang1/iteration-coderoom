@@ -5,6 +5,7 @@ const SALT_WORK_FACTOR = 10;
 
 
 userController.checkExisting = (req,res,next) => {
+  console.log("we are on server port!!!!!")
     if(req.body.username && req.body.password){
         User.count({username : req.body.username}, (err,results) => {
             if(err){ res.send(err)}
@@ -38,7 +39,7 @@ userController.createUser = (req, res, next) => {
         });
       });
     })).then(() => {
-      console.log("Armannnnnn");
+      // console.log("Armannnnnn");
       User.create(
       {
         username: req.body.username,

@@ -4,8 +4,14 @@ const path = require('path');
 const userController = require('./../controller/userController');
 const bodyParser = require('body-parser')
 
-const PORT = 8080;
+const port = process.env.PORT || 8080;
+// const port = 8080;
 
+// const server = http.createServer(app);
+// server.listen(8080);
+// server.on('listening', () => {
+//   console.log('Server is listening on port: 3000');
+// });
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -29,4 +35,4 @@ app.get('/lose', (req, res) => {res.sendFile(__dirname + '/build/lose.html')});
 
 app.get('/fonts/Wargames.woff', (req, res) => res.sendFile(__dirname + '/fonts/Wargames.woff'));
 
-app.listen(PORT, () => console.log(`Listening to PORT: ${PORT}`));
+app.listen(port, () => console.log(`Listening to PORT: ${port}`));
