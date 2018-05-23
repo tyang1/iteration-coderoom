@@ -17,6 +17,9 @@ class CodeMirrorApp extends Component {
   handleChange(newCode) {
       this.setState({code: newCode});
   }
+  componentDidMount() {
+    
+  }
 
   render() {
       const options = {
@@ -41,7 +44,7 @@ class CodingBox extends Component {
     return (
       <DM.Consumer>
         {context => {
-          if (!context.challengeActive) return <div className="coding-wrapper">Awaiting challenge...</div>
+          if (!context.gameStarted) return <div className="coding-wrapper">Awaiting challenge...<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
           // var doc = editor.getDoc();
           // console.log(doc);
           // console.log(doc.getValue());
