@@ -22,13 +22,14 @@ class CodeMirrorApp extends Component {
   }
 
   render() {
+    let mirrorVal = this.state.code;
       const options = {
           lineNumbers: true,
           mode: 'javascript'
       };
       return(
           <div>
-              <CodeMirror value={this.state.code} onChange={this.handleChange} options={options}/>
+              <CodeMirror value={mirrorVal} onChange={this.handleChange} options={options}/>
               <div id="challenge-options">
                 <button id="code-btn" onClick={() => this.props.submitTest(this.state.code)}>Submit Code!</button>
                 <div>{this.props.challengeResponseText}</div>
@@ -39,12 +40,15 @@ class CodeMirrorApp extends Component {
 }
 
 class CodingBox extends Component {
+  componentDidMount() {
+    // setInterval(() => this.forceUpdate(), 1000)
+  }
 
   render() {
     return (
       <DM.Consumer>
         {context => {
-          if (!context.gameStarted) return <div className="coding-wrapper">Awaiting challenge...<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+          if (!context.gameStarted) return <div className="coding-wrapper">Start your adventure to continue...<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
           // var doc = editor.getDoc();
           // console.log(doc);
           // console.log(doc.getValue());

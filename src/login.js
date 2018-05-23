@@ -23,20 +23,41 @@ class Login extends Component {
       else alert('Invalid user information.');
     });
   }
+  verifyUserTwo = e => {
+    e.preventDefault();
+    axios.post('/login', {
+      name: e.target.username.value,
+      password: e.target.password.value,
+    }).then(res => {
+      if (res.data) this.toggleLogin();
+      else alert('Invalid user information.');
+    });
+  }
   render() {
     return (
       <div id="login-container">
         <form className="login-form" onSubmit={this.verifyUser}>
-          🥇Username:
+        👩‍💻 👨‍💻Username:
           <input name="username"/>
           <br />
-          🎲Password:
+          🤫Password:
           <input name="password" type="password"/>
           <br />
-          <button>Sign in</button>
+          <button>Sign up</button>
           <br />
           <br />
           <button onClick={this.toggleLogin}>Continue as Guest</button>
+        </form>
+        <form className="login-form" onSubmit={this.verifyUserTwo}>
+        👩‍💻 👨‍💻Username:
+          <input name="username"/>
+          <br />
+          🤫Password:
+          <input name="password" type="password"/>
+          <br />
+          <button>Log in</button>
+          <br />
+          <br />
         </form>
       </div>
     );
