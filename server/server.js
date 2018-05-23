@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const PORT = 8080;
 
 //redirect after successful login
-// const redirect = (req, res) => res.redirect('/**logged-in-url**');
+const redirect = (req, res) => res.send(true);
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 
 app.post('/', userController.checkExisting, userController.createUser);
-app.post('/login', userController.verifyUser, /*cookieController.setSSIDCookie,*/ /*sessionController.startSession, */ /*redirect */);
+app.post('/login', userController.verifyUser /*,cookieController.setSSIDCookie,*/ /*sessionController.startSession,*/ ,redirect );
 
 app.get('/', (req, res) => {res.sendFile(__dirname + '/build/index.html')});
 

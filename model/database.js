@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-	console.log('we are connected!');
+	console.log('bruh, i\'m mongo\'d');
 });
 
 const Schema = mongoose.Schema;
