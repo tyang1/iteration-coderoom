@@ -3,7 +3,6 @@ const userController = {};
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
 
-
 userController.checkExisting = (req,res,next) => {
     if(req.body.username && req.body.password){
         User.count({username : req.body.username}, (err,results) => {
@@ -12,7 +11,7 @@ userController.checkExisting = (req,res,next) => {
             next();
         })
     }else{
-       res.send("The username or password cannot be empty.")
+      res.send("The username or password cannot be empty.")
     }
 }
 
@@ -53,7 +52,7 @@ userController.createUser = (req, res, next) => {
           res.send(err);
         }else{
           console.log("created user!!!!")
-          res.send(updated);
+          res.send(true);
         }
       }
     )})
@@ -61,6 +60,28 @@ userController.createUser = (req, res, next) => {
     //   console.log("ERRRRRR", err)
     // }
       }
+    next();
+};
+
+userController.verifyUser = (req, res, next) => {
+  // console.log('req is ', req);
+  console.log('req.body.username is ', req.body.username);
+  console.log('req.body.password is :', req.body.password);
+  // console.log('res is ', res);
+  User.findOne({ username: req.body.username }, (err, user) => {
+    console.log('entered findOne method, user document (object) is: ', user);
+    // SELECT * FROM users WHERE username = Arman (for SQL)
+    if (err) return res.status(400).render('error', { error: err });
+    let plainPass = req.body.password; //ab2
+    let userHash = user.password; //hashed ab2
+    bcrypt.compare(plainPass, userHash, (err2, isMatch) => {
+      console.log('entered comparePassword method, match? :', isMatch);
+      if (err) res.status(500).render('error', { error: err });
+      if (!isMatch) return res.status(403).render('error', { error: err });
+      console.log(req.body.username, ' verification complete.');
+      next();
+    });
+  });
 };
 
 module.exports = userController;
