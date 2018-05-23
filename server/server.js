@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 
 app.post('/', userController.checkExisting, userController.createUser);
-app.post('/login', userController.verifyUser /*,cookieController.setSSIDCookie,*/ /*sessionController.startSession,*/ ,redirect );
+app.post('/login', userController.verifyUser, /*cookieController.setSSIDCookie,*/ /*sessionController.startSession,*/ redirect );
 
 app.get('/', (req, res) => {res.sendFile(__dirname + '/build/index.html')});
 

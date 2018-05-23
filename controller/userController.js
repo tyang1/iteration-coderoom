@@ -60,6 +60,7 @@ userController.createUser = (req, res, next) => {
     //   console.log("ERRRRRR", err)
     // }
       }
+    next();
 };
 
 userController.verifyUser = (req, res, next) => {
