@@ -47,9 +47,34 @@ try {
     }
 
     break;
+    
   case 2:
+    passed = true;
+
+    try {
+      val = writeStr();
+    } catch (e) {
+      postMessage('no');
+    }
+    if (val !== 'wilbur') {
+      passed = false;
+      break;
+    }
 
     break;
+
+  case 3:
+    passed = true;
+    
+    try {
+      val = addThree(5);
+    } catch (e) {
+      postMessage('no');
+    }
+    if (val !== 8) {
+      passed = false;
+      break;
+    }
 
   default:
     break;
@@ -155,6 +180,10 @@ class DungeonMaster extends Component {
         // start the game
 
         this.state.gameStarted = true;
+        this.setState({
+          challengePrompt:
+            "Write a function that returns the string 'wilbur'."
+        });
 
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.unshift(this.state.text.nightstandText);
@@ -165,13 +194,22 @@ class DungeonMaster extends Component {
         this.setState({nightstandBtn: {disabled: true, text: 'Open Nightstand Drawer'}});
         const startTime = new Timer(0);
         
+        this.setState({startingCode: `function writeStr() {
+          
+}`});
       },
       goToBed: function() {
         this.state.checkpoint[0] = 3;
 
         // start the game
-
         this.state.gameStarted = true;
+        this.setState({
+          challengePrompt:
+            "Write a function that accepts a number as a parameter. It will return the the sum of the number and three."
+        });
+        this.setState({startingCode: `function addThree(num) {
+          
+}`});
 
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.unshift(this.state.text.bedText);
@@ -184,6 +222,10 @@ class DungeonMaster extends Component {
       },
       challengeBoss: function() {
         this.state.checkpoint[0] = 4;
+        this.setState({
+          challengePrompt:
+            "Write a function that defeats the boss."
+        });
 
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.unshift(this.state.text.bossChallengeText);
@@ -210,7 +252,7 @@ class DungeonMaster extends Component {
       challengeActive: true,
       challengePrompt: "",
       startingCode: `function findInArray (arr, elem) {
-// your code here
+// your code here ♥
 
 }`,
       challengeResponseText: "",
@@ -219,7 +261,7 @@ class DungeonMaster extends Component {
         // console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
         // console.log(myWorker);
         if (this.state.gameStarted)
-          myWorker.postMessage({ code: code, challenge: 1 });
+          myWorker.postMessage({ code: code, challenge: this.state.checkpoint[0] });
       },
     };
     
@@ -239,9 +281,9 @@ class DungeonMaster extends Component {
         // look at the checkpoint array, update the index of the current challenge, set it to completed
         this.state.checkpoint[2][this.state.checkpoint[0] - 1] = 1;
        // console.log("made it in!");
-        this.state.activeNarrative.push(this.state.text.completionText);
+        this.state.activeNarrative.unshift(this.state.text.completionText);
         this.setState({keysCollected: this.state.keysCollected + 1});
-        if (this.state.keysCollected === 3) this.state.toggleHidden();
+        if (this.state.keysCollected >= 3) this.state.toggleHidden();
         this.setState({challengeResponseText: 'Nice one!'});
       } else if (e.data === 'no') {
         this.setState({challengeResponseText: 'Try again bud...'});
