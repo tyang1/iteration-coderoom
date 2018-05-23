@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 class Login extends Component {
   constructor(props) {
@@ -9,16 +10,26 @@ class Login extends Component {
     e.preventDefault();
     const login = document.getElementById("login-container");
     login.style.display === 'none' ? login.style.display = 'block' : login.style.display = "none";
-  };
+  }
+  verifyUser = e => {
+    e.preventDefault();
+    axios.post('/', {
+      name: e.target.username.value,
+      password: e.target.password.value,
+    }).then(res => {
+      if (res.data) this.toggleLogin();
+      else alert('Invalid user information.');
+    });
+  }
   render() {
     return (
       <div id="login-container">
-        <form className="login-form">
-          Username:
-          <input />
+        <form className="login-form" onSubmit={this.verifyUser}>
+          🥇Username:
+          <input name="username"/>
           <br />
-          Password:
-          <input />
+          🎲Password:
+          <input name="password" type="password"/>
           <br />
           <button>Sign in</button>
           <br />
