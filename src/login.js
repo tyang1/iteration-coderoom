@@ -5,6 +5,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.toggleLogin = this.toggleLogin.bind(this);
+    this.verifyUser = this.verifyUser.bind(this);
   }
   toggleLogin = e => {
     e.preventDefault();
@@ -17,7 +19,7 @@ class Login extends Component {
       name: e.target.username.value,
       password: e.target.password.value,
     }).then(res => {
-      if (res.data) this.toggleLogin();
+      if (res.data) this.toggleLogin(e);
       else alert('Invalid user information.');
     });
   }
