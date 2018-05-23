@@ -112,6 +112,7 @@ class DungeonMaster extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      keyo: 0,
       gameStarted: false,
       checkpoint: [0, 0, [0, 0, 0]], // current challenge, current level, array of completed challenges
       isHidden: true,
@@ -151,6 +152,7 @@ class DungeonMaster extends Component {
   
 
       goToDesk: () => {
+        this.state.keyo += 1;
         this.state.checkpoint[0] = 1;
         // start the game
         this.state.gameStarted = true;
@@ -172,9 +174,16 @@ class DungeonMaster extends Component {
         //set timer
 
         const startTime = new Timer(0);
+        this.setState({
+          startingCode: `function findInArray (arr, elem) {
+// your code here ♥
+            
+}`,
+        });
 
       },
       goToNightstand: function() {
+        this.state.keyo += 1;
         this.state.checkpoint[0] = 2;
 
         // start the game
@@ -195,10 +204,12 @@ class DungeonMaster extends Component {
         const startTime = new Timer(0);
         
         this.setState({startingCode: `function writeStr() {
+// 🍦🍦🍦
           
 }`});
       },
       goToBed: function() {
+        this.state.keyo += 1;
         this.state.checkpoint[0] = 3;
 
         // start the game
@@ -208,6 +219,7 @@ class DungeonMaster extends Component {
             "Write a function that accepts a number as a parameter. It will return the the sum of the number and three."
         });
         this.setState({startingCode: `function addThree(num) {
+// 🌮🌮🌮
           
 }`});
 
@@ -221,12 +233,19 @@ class DungeonMaster extends Component {
         const startTime = new Timer(0);
       },
       challengeBoss: function() {
+        this.state.keyo += 1;
         this.state.checkpoint[0] = 4;
         this.setState({
           challengePrompt:
             "Write a function that defeats the boss."
         });
-
+        this.setState({startingCode: `function saveWilbur(num) {
+// 😈🔥 😈😈😈🔥😈☄️😈😈 👹😈😈🔥😈😈😈😈👹😈😈😈😈😈
+😈😈👹😈   😈😈 👹😈😈😈🔥   😈 😈😈😈👹😈😈😈🔥😈😈
+🆘🆘🆘Ḁ̷̢̧̨̹̱̫̠̥̔́͗̑̓̀͜H̶̨͉̩̟͑̈̓͌͑̀̾͋̇̂̃H̷̰̰̫̖̜͉͎̹̬̐̉͒́̉̓̔̎̌̕̚͠͠H̷̙̀͆́̐̑̎̍͌̃̊̕̕͠H̸͕͙̲͈͕̩̓̕H̸͇͕̿̈̑̈́̎͂̿̆̓̓͘̕͝ͅḨ̵̛͍̙̜̣̗̰̰̤̖͖͓̱͕͉̊̌̐̄̈́͌͒̉̓͘͠H̶̱̣̖̯̱͎̖̮̠̜͎̪͛͑͋ͅͅḤ̵̡̢̫̦̠͔̬̹̅̑͌̀̈́͑͒͑̊̍͐͘͝ͅ ̶̄̍P̵̨̡̢͓̙̯̼̼̳̖̦͍̆̏́͗͜͠ͅL̶̢̛̹̱̤̦̼̱̖̘̱̰͆̽͊̌̋̚É̷̠̮̹͓͍͒̈̔A̸̻̙̽Ṡ̷̮͍͎̫̟̺̝͍̣̘̮̜͋Ë̵͍̘̟͔̼̝͎̳̯̰͍́̊͌̋̔̎͆̂̊͒̚ ̷͐͘H̵̭̻̪͈̱̫̙̦͓̰̀̈́̇̂̀͑͛̒̾͑͂̕͝͝͝ͅĘ̵̨̢̛̲̲̜̖̣̺̥̤͍̔̔͋̀̓͆̂L̴̤̜͉̲̦̎̋̄͒̒̕̕͜P̴̗̞̪̤̫̙̘͇̲̈̐͋̈̆̉̕͜͝ ̵͐͌̏͑͆M̶̠̺̙̏̉͘Ȅ̴̹̤͍̒̔̈́̈́́̃̃̿̃̕̚͝🐶😱🆘🆘🆘
+😈😈☄️😈😈😈🔥☄ ️😈 😈👹😈😈 😈🔥😈😈😈👹😈😈😈🔥😈😈
+😈😈🔥😈😈👹😈😈 😈😈🔥😈   😈😈👹😈😈☄️😈🔥😈😈😈👹😈
+}`});
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.unshift(this.state.text.bossChallengeText);
         // reset challengeResponseText to an empty string at beginning of challenge
