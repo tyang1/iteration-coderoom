@@ -4,10 +4,13 @@ const path = require('path');
 const userController = require('./../controller/userController');
 const bodyParser = require('body-parser')
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
+// const port = 8080;
+
 
 //redirect after successful login
 const redirect = (req, res) => res.send(true);
+
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -33,5 +36,6 @@ app.get('/lose', (req, res) => {res.sendFile(__dirname + '/build/lose.html')});
 
 app.get('/fonts/Wargames.woff', (req, res) => res.sendFile(__dirname + '/fonts/Wargames.woff'));
 
-app.listen(PORT, () => console.log('Listening to PORT: ' , PORT));
+
 app.listen(PORT, () => console.log(`Listening to PORT: ${PORT}`));
+
