@@ -15,13 +15,16 @@ class Inventory extends Component {
     render() {
         return (
           <DM.Consumer>
-            {context => (
+            {context => {
+                let item = <div></div>
+                if (context.item) item = [<img onClick={context.useItem} className="item" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Ice-Cream-PNG/Transparent_Chocolate_Ice_Cream_Cone_Picture.png?m=1434276752"/>];
               // this is where any work happens that requires state. DungeonMaster's "this.state" can be reffered to as "context" here
-                <div className="inventory">
+               return(<div className="inventory">
                     <div className="name-inventory">Inventory:</div>
                     <p className="name-inventory">🔑: {context.keysCollected} / 3</p>
-                </div>
-            )}
+                    {item}
+                </div>)
+            }}
           </DM.Consumer>
         );
     }

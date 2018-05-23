@@ -73,6 +73,14 @@
   border: 1px solid black;
 }
 
+.item {
+  margin-left: 20px;
+  z-index: 10;
+  width: 50px;
+  background-color: black;
+  cursor: pointer;
+}
+
 .inventory {
   color: lightgray;
   background-color: black;
@@ -84,7 +92,7 @@
 }
 
 .name-inventory {
-
+  display: inline;
   padding: 5px;
   // margin: top right down left
   background-color: black;
