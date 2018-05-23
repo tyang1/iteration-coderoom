@@ -117,6 +117,9 @@ class DungeonMaster extends Component {
       checkpoint: [0, 0, [0, 0, 0]], // current challenge, current level, array of completed challenges
       isHidden: true,
       keysCollected: 0,
+      totalTime: 0,
+      seconds: 0,
+      timerOn: false,
       text: {
         introText:
           "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...",
@@ -131,7 +134,7 @@ class DungeonMaster extends Component {
         bossChallengeText:
           "You have collected all the keys to unlock the door. Time for the Boss battle!",
         bossDefeatText:
-          "CONGRATULATIONS!!! You have succesfully defeated the Boss Challenge and ESCAPED!!!"
+          "CONGRATULATIONS!!! You have succesfully defeated the Boss and SAVED WILBUR🐶!!!"
       },
 
 
@@ -144,13 +147,26 @@ class DungeonMaster extends Component {
       bedBtn: {disabled: false, text: 'Look Under Bed'},
       bossBtn: {disabled: false, text: 'Challenge Boss'},
       
+      incrementTime: () => {
+        this.setState({timerOn: true});
+        seconds++;
+      },
+      timerStart: () => {
+        this.timeoutID = window.setTimeout(() => {this.state.incrementTime(); this.state.timerStart()}, 1000);
+        console.log(seconds); 
+        this.setState({seconds: seconds}); 
+      },
 
+      Timer: () => {
+        this.state.timerStart();    
+      },
 
-      timer: () => {
-        setTimeout(() => {this.state.incrementTime(); this.state.timer()}, 1000)
+      timerPause: () => {
+        this.setState({timerOn: false});
+        window.clearTimeout(this.timeoutID);
+        console.log('pause pressed', this.state.seconds);
       },
   
-
       goToDesk: () => {
         this.state.keyo += 1;
         this.state.checkpoint[0] = 1;
@@ -173,14 +189,16 @@ class DungeonMaster extends Component {
 
         //set timer
 
-        const startTime = new Timer(0);
         this.setState({
           startingCode: `function findInArray (arr, elem) {
 // your code here ♥
             
 }`,
         });
-
+        //set timer
+        if (this.state.timerOn === true) return
+        else {this.state.Timer();
+        this.state.timerOn = true;};
       },
       goToNightstand: function() {
         this.state.keyo += 1;
@@ -201,12 +219,15 @@ class DungeonMaster extends Component {
         // set nightstandBtn disabled so it's greyed out
 
         this.setState({nightstandBtn: {disabled: true, text: 'Open Nightstand Drawer'}});
-        const startTime = new Timer(0);
         
         this.setState({startingCode: `function writeStr() {
 // 🍦🍦🍦
           
 }`});
+        //set timer
+        if (this.state.timerOn === true) return
+        else {this.state.Timer();
+        this.state.timerOn = true;};
       },
       goToBed: function() {
         this.state.keyo += 1;
@@ -230,7 +251,10 @@ class DungeonMaster extends Component {
         // set bedBtn disabled so it's greyed out
 
         this.setState({bedBtn: {disabled: true, text: 'Look Under Bed'}});
-        const startTime = new Timer(0);
+                //set timer
+        if (this.state.timerOn === true) return
+        else {this.state.Timer();
+        this.state.timerOn = true;};
       },
       challengeBoss: function() {
         this.state.keyo += 1;
@@ -253,14 +277,17 @@ class DungeonMaster extends Component {
         // set bedBtn disabled so it's greyed out
 
         this.setState({bossBtn: {disabled: true, text: 'Challenge Boss'}});
-        const startTime = new Timer(0);
 
       },
       bossChallengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.unshift(this.state.bossDefeatText);
         // we also need to redirect the player to the winner screen
-
+        //total time - pause the timer, which will update the state
+        this.state.timerPause();
+        //update state.totalTime --> is this necessary?
+        this.setState({totalTime: seconds});
+        console.log(this.state.totalTime);
         //total time
         //how to sum up these values from the different elements of state?
        // this.setState({challengeTime: });
@@ -296,9 +323,18 @@ class DungeonMaster extends Component {
     this.state.submitTest = this.state.submitTest.bind(this);
     this.state.toggleHidden = this.state.toggleHidden.bind(this);
     myWorker.onmessage = e => {
+      if (e.data === 'no') {
+        this.setState({challengeResponseText: 'Try again bud...'});
+        return;
+      }
       //console.log( e.data, "NO!!" );
-
-      if (e.data === 'yes') {
+      if (e.data === 'yes' && JSON.stringify(this.state.checkpoint[2]) === JSON.stringify([1, 1, 1])) {
+        this.state.keysCollected -= 3;
+        this.state.checkpoint = [0, this.state.checkpoint[1] + 1, [0, 0, 0]];
+        this.setState({challengeResponseText: '😱😱😱'});
+        this.state.activeNarrative.unshift(this.state.text.bossDefeatText);
+        this.state.bossChallengeCompleted();
+      } else if (e.data === 'yes' && this.state.checkpoint[2] !== [1, 1, 1]) {
         // look at the checkpoint array, update the index of the current challenge, set it to completed
         this.state.checkpoint[2][this.state.checkpoint[0] - 1] = 1;
        // console.log("made it in!");
@@ -306,10 +342,8 @@ class DungeonMaster extends Component {
         this.setState({keysCollected: this.state.keysCollected + 1});
         if (this.state.keysCollected >= 3) this.state.toggleHidden();
         this.setState({challengeResponseText: 'Nice one!'});
-      } else if (e.data === 'no') {
-        this.setState({challengeResponseText: 'Try again bud...'});
-
       }
+
       //console.log('Message received from worker');
       // DEMO: just change the url on success or failure of one challenge
       // if (e.data === 'yes') window.URL('/win.html');
