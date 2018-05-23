@@ -134,7 +134,7 @@ class DungeonMaster extends Component {
         bossChallengeText:
           "You have collected all the keys to unlock the door. Time for the Boss battle!",
         bossDefeatText:
-          "CONGRATULATIONS!!! You have succesfully defeated the Boss and SAVED WILBUR🐶!!!"
+          `CONGRATULATIONS!!! You have succesfully defeated the Boss and SAVED WILBUR🐶!!!`
       },
 
 
@@ -281,7 +281,7 @@ class DungeonMaster extends Component {
       },
       bossChallengeCompleted: function() {
         // here we add the relevant narrative text to the active narrative array
-        this.state.activeNarrative.unshift(this.state.bossDefeatText);
+        // this.state.activeNarrative.unshift(this.state.bossDefeatText);
         // we also need to redirect the player to the winner screen
         //total time - pause the timer, which will update the state
         this.state.timerPause();
@@ -291,6 +291,7 @@ class DungeonMaster extends Component {
         //total time
         //how to sum up these values from the different elements of state?
        // this.setState({challengeTime: });
+      //  alert(`Time elapsed: ${this.state.totalTime}`)
       },
       toggleHidden: function() {
         this.setState({ isHidden: false });
@@ -332,7 +333,7 @@ class DungeonMaster extends Component {
         this.state.keysCollected -= 3;
         this.state.checkpoint = [0, this.state.checkpoint[1] + 1, [0, 0, 0]];
         this.setState({challengeResponseText: '😱😱😱'});
-        this.state.activeNarrative.unshift(this.state.text.bossDefeatText);
+        this.state.activeNarrative.unshift(this.state.text.bossDefeatText + ` Time elapsed: ${this.state.seconds} seconds.`);
         this.state.bossChallengeCompleted();
       } else if (e.data === 'yes' && this.state.checkpoint[2] !== [1, 1, 1]) {
         // look at the checkpoint array, update the index of the current challenge, set it to completed
