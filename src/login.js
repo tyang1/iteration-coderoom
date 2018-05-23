@@ -25,10 +25,10 @@ class Login extends Component {
     return (
       <div id="login-container">
         <form className="login-form" onSubmit={this.verifyUser}>
-          Username:
+          🥇Username:
           <input name="username"/>
           <br />
-          Password:
+          🎲Password:
           <input name="password" type="password"/>
           <br />
           <button>Sign in</button>
