@@ -135,7 +135,7 @@ class DungeonMaster extends Component {
       },
 
 
-      activeNarrative: ['You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...you notice that the desk drawer looks like a good place to find a hint!'],
+      activeNarrative: ['You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings.'],
 
 
       promptText: '',
@@ -277,10 +277,12 @@ class DungeonMaster extends Component {
       challengeResponseText: "",
 
       submitTest: function(code) {
+        if (!this.state.checkpoint[2][this.state.checkpoint[0] - 1]) {
         // console.log(`submitTest: submitting code to web worker, sending datatype: ${typeof code}.\nCode to submit: ${code}`);
         // console.log(myWorker);
         if (this.state.gameStarted)
           myWorker.postMessage({ code: code, challenge: this.state.checkpoint[0] });
+        }
       },
     };
     
