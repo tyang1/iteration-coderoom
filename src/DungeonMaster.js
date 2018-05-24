@@ -150,7 +150,8 @@ class DungeonMaster extends Component {
       
       useItem: () => {
         myWorker.postMessage({ code: 'item', challenge: 'item' });
-        this.state.item = false
+        this.state.item = false;
+        document.getElementById('item-instructions').style.display = 'none';
       },
 
       incrementTime: () => {
@@ -288,6 +289,13 @@ class DungeonMaster extends Component {
 
       },
       bossChallengeCompleted: function() {
+        this.state.keyo += 1;
+        this.setState({startingCode: `😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊
+😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊
+😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊
+😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊           
+😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊`});
+
         // here we add the relevant narrative text to the active narrative array
         // this.state.activeNarrative.unshift(this.state.bossDefeatText);
         // we also need to redirect the player to the winner screen
