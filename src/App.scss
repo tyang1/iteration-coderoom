@@ -81,6 +81,17 @@
   cursor: pointer;
 }
 
+#item-instructions {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 100px;
+  left: 53.5%;
+  width: 150px;
+  background-color: black;
+  color: white;
+}
+
 .inventory {
   color: lightgray;
   background-color: black;
