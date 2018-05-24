@@ -72,24 +72,26 @@ userController.verifyUser = (req, res, next) => {
   console.log("req body", req.body);
   let {name,password} = req.body;
   // console.log('req is ', req);
-  console.log('req.body.username is ', req.body.username);
+  console.log('req.body.username is ', req.body.name);
   console.log('req.body.password is :', req.body.password);
   // console.log('res is ', res);
-  User.findOne({ username: req.body.username }, (err, user) => {
+  User.findOne({ username: req.body.name }, (err, user) => {
     console.log('entered findOne method, user document (object) is: ', user);
     // SELECT * FROM users WHERE username = Arman (for SQL)
     if (err) return res.status(400).render('error', { error: err });
-    if (user === null) res.send(false);
+    if (user === null) res.send(null);
     let plainPass = req.body.password; //ab2
     let userHash = user.password; //hashed ab2
     bcrypt.compare(plainPass, userHash, (err2, isMatch) => {
       console.log('entered comparePassword method, match? :', isMatch);
       if (err) res.status(500).render('error', { error: err });
       if (!isMatch) return res.status(403).render('error', { error: err });
-      console.log(req.body.username, ' verification complete.');
+      console.log(req.body.name, ' verification complete.');
       next();
     });
   });
 };
+
+userController.
 
 module.exports = userController;
