@@ -65,6 +65,23 @@
   text-align: left;
   border: 1px solid black; }
 
+.item {
+  margin-left: 20px;
+  z-index: 10;
+  width: 50px;
+  background-color: black;
+  cursor: pointer; }
+
+#item-instructions {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 100px;
+  left: 53.5%;
+  width: 150px;
+  background-color: black;
+  color: white; }
+
 .inventory {
   color: lightgray;
   background-color: black;
@@ -75,6 +92,7 @@
   text-align: center; }
 
 .name-inventory {
+  display: inline;
   padding: 5px;
   background-color: black; }
 

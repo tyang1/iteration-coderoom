@@ -120,6 +120,7 @@ class DungeonMaster extends Component {
       totalTime: 0,
       seconds: 0,
       timerOn: false,
+      item: false,
       text: {
         introText:
           "You wake up to find yourself in a dimly lit room. Wondering where you are you start to explore your small surroundings...",
@@ -147,6 +148,12 @@ class DungeonMaster extends Component {
       bedBtn: {disabled: false, text: 'Look Under Bed'},
       bossBtn: {disabled: false, text: 'Challenge Boss'},
       
+      useItem: () => {
+        myWorker.postMessage({ code: 'item', challenge: 'item' });
+        this.state.item = false;
+        document.getElementById('item-instructions').style.display = 'none';
+      },
+
       incrementTime: () => {
         this.setState({timerOn: true});
         seconds++;
@@ -201,6 +208,8 @@ class DungeonMaster extends Component {
         this.state.timerOn = true;};
       },
       goToNightstand: function() {
+        console.log(JSON.stringify(this.state.checkpoint[2]) === JSON.stringify([0, 0, 0]))
+        if (JSON.stringify(this.state.checkpoint[2]) === JSON.stringify([0, 0, 0])) this.state.item = true;
         this.state.keyo += 1;
         this.state.checkpoint[0] = 2;
 
@@ -264,11 +273,11 @@ class DungeonMaster extends Component {
             "Write a function that defeats the boss."
         });
         this.setState({startingCode: `function saveWilbur(num) {
-😈🔥 😈😈😈🔥😈☄️😈😈 👹😈😈🔥😈😈😈😈👹😈😈😈😈😈️️️☄️
-😈😈👹😈   😈😈 👹😈☄️😈🔥   😈 😈😈😈👹😈😈😈🔥😈☄️
+😈🔥 😈 😈🔥😈☄️😈😈 👹😈😈🔥😈😈😈😈👹😈😈 😈😈️️️☄️
+😈😈👹😈   😈😈 👹😈☄️😈🔥   😈 😈😈😈👹  😈😈🔥😈☄️
 🆘🆘🆘Ḁ̷̢̧̨̹̱̫̠̥̔́͗̑̓̀͜H̶̨͉̩̟͑̈̓͌͑̀̾͋̇̂̃H̷̰̰̫̖̜͉͎̹̬̐̉͒́̉̓̔̎̌̕̚͠͠H̷̙̀͆́̐̑̎̍͌̃̊̕̕͠H̸͕͙̲͈͕̩̓̕H̸͇͕̿̈̑̈́̎͂̿̆̓̓͘̕͝ͅḨ̵̛͍̙̜̣̗̰̰̤̖͖͓̱͕͉̊̌̐̄̈́͌͒̉̓͘͠H̶̱̣̖̯̱͎̖̮̠̜͎̪͛͑͋ͅͅḤ̵̡̢̫̦̠͔̬̹̅̑͌̀̈́͑͒͑̊̍͐͘͝ͅ ̶̄̍P̵̨̡̢͓̙̯̼̼̳̖̦͍̆̏́͗͜͠ͅL̶̢̛̹̱̤̦̼̱̖̘̱̰͆̽͊̌̋̚É̷̠̮̹͓͍͒̈̔A̸̻̙̽Ṡ̷̮͍͎̫̟̺̝͍̣̘̮̜͋Ë̵͍̘̟͔̼̝͎̳̯̰͍́̊͌̋̔̎͆̂̊͒̚ ̷͐͘H̵̭̻̪͈̱̫̙̦͓̰̀̈́̇̂̀͑͛̒̾͑͂̕͝͝͝ͅĘ̵̨̢̛̲̲̜̖̣̺̥̤͍̔̔͋̀̓͆̂L̴̤̜͉̲̦̎̋̄͒̒̕̕͜P̴̗̞̪̤̫̙̘͇̲̈̐͋̈̆̉̕͜͝ ̵͐͌̏͑͆M̶̠̺̙̏̉͘Ȅ̴̹̤͍̒̔̈́̈́́̃̃̿̃̕̚͝🐶😱🆘🆘🆘
-😈😈☄️😈😈😈🔥☄ ️😈 😈👹😈😈 😈🔥😈😈😈👹😈😈️😈🔥😈😈
-😈😈🔥☄️😈👹😈😈 😈😈🔥😈   😈😈👹😈😈☄️😈🔥😈😈😈👹😈
+😈😈☄️😈  😈🔥☄ ️😈 😈👹😈😈 😈🔥😈😈😈👹😈 😈🔥😈😈
+😈😈🔥☄️  👹😈😈 😈😈🔥😈   😈😈👹😈😈☄️😈🔥😈 😈👹😈
 }`});
         // here we add the relevant narrative text to the active narrative array
         this.state.activeNarrative.unshift(this.state.text.bossChallengeText);
@@ -280,6 +289,13 @@ class DungeonMaster extends Component {
 
       },
       bossChallengeCompleted: function() {
+        this.state.keyo += 1;
+        this.setState({startingCode: `😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊
+😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊
+😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊
+😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊           
+😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊`});
+
         // here we add the relevant narrative text to the active narrative array
         // this.state.activeNarrative.unshift(this.state.bossDefeatText);
         // we also need to redirect the player to the winner screen
