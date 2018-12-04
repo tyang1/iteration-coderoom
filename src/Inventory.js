@@ -26,7 +26,7 @@ class Inventory extends Component {
           <DM.Consumer>
             {context => {
                 let item = <div></div>
-                if (context.item) item = [<img onMouseOver={this.mouseOverIceCream} onMouseLeave={this.mouseLeaveIceCream} onClick={context.useItem} className="item" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Ice-Cream-PNG/Transparent_Chocolate_Ice_Cream_Cone_Picture.png?m=1434276752"/>];
+                if (context.item) item = <img onMouseOver={this.mouseOverIceCream} onMouseLeave={this.mouseLeaveIceCream} onClick={context.useItem} className="item" src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Ice-Cream-PNG/Transparent_Chocolate_Ice_Cream_Cone_Picture.png?m=1434276752"/>;
               // this is where any work happens that requires state. DungeonMaster's "this.state" can be reffered to as "context" here
                return(<div className="inventory">
                     <div className="name-inventory">Inventory:</div>

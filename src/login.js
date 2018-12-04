@@ -30,7 +30,7 @@ class Login extends Component {
       name: e.target.username.value,
       password: e.target.password.value,
     }).then(res => {
-      if (res.data !== null ) this.toggleLogin(e);
+      if (res.data) this.toggleLogin(e);
       else alert('Invalid user information.');
     });
   }

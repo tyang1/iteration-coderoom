@@ -79,7 +79,7 @@ userController.verifyUser = (req, res, next) => {
     console.log('entered findOne method, user document (object) is: ', user);
     // SELECT * FROM users WHERE username = Arman (for SQL)
     if (err) return res.status(400).render('error', { error: err });
-    if (user === null) res.send(null);
+    if (user === null) res.send();
     let plainPass = req.body.password; //ab2
     let userHash = user.password; //hashed ab2
     bcrypt.compare(plainPass, userHash, (err2, isMatch) => {
@@ -92,6 +92,5 @@ userController.verifyUser = (req, res, next) => {
   });
 };
 
-userController.
 
 module.exports = userController;

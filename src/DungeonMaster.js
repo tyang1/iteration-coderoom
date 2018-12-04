@@ -149,8 +149,9 @@ class DungeonMaster extends Component {
       bossBtn: {disabled: false, text: 'Challenge Boss'},
       
       useItem: () => {
-        myWorker.postMessage({ code: 'item', challenge: 'item' });
+        myWorker.postMessage({ code: 'none', challenge: 'cool' });
         this.state.item = false;
+        console.log()
         document.getElementById('item-instructions').style.display = 'none';
       },
 
@@ -194,7 +195,6 @@ class DungeonMaster extends Component {
 
         this.setState({deskBtn: {disabled: true, text: 'Check Desk' }});
 
-        //set timer
 
         this.setState({
           startingCode: `function findInArray (arr, elem) {
@@ -352,6 +352,7 @@ class DungeonMaster extends Component {
         this.state.activeNarrative.unshift(this.state.text.bossDefeatText + ` Time elapsed: ${this.state.seconds} seconds.`);
         this.state.bossChallengeCompleted();
       } else if (e.data === 'yes' && this.state.checkpoint[2] !== [1, 1, 1]) {
+        // console.log(e)
         // look at the checkpoint array, update the index of the current challenge, set it to completed
         this.state.checkpoint[2][this.state.checkpoint[0] - 1] = 1;
        // console.log("made it in!");
